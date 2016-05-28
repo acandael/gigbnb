@@ -11,6 +11,7 @@
   <p class="alert"><%= alert %></p>
   <% if member_signed_in? %>
     <%= link_to "Sign out", destroy_member_session_path, method: :delete %>
+    <%= link_to "Profile", new_member_profile_path(current_member) %>
   <% else %>
   <%= link_to "Sign in", new_member_session_path %>
   <% end %>
