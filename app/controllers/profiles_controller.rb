@@ -12,7 +12,8 @@ class ProfilesController < ApplicationController
     if @profile.save
       redirect_to member_profile_path(current_member, @profile), notice: "Successfully created profile."
     else
-      render :new
+      flash[:alert] = "Could not create profile."
+      render :new 
     end
   end
 
