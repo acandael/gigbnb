@@ -1,14 +1,14 @@
 class ProfilesController < ApplicationController
   def new
-    @profile = current_member.build_profile
+    @profile = Profile.new
   end
 
   def show
-    @profile = Profile.find(params[:id])
+    @profile = current_member.build_profile
   end
 
   def create
-    @profile = Profile.create(profile_params)
+    @profile = current_member.create_profile(profile_params)
     if @profile.save
       redirect_to member_profile_path(current_member, @profile), notice: "Successfully created profile."
     else
@@ -20,6 +20,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.required(:profile).permit(:member_id, :first_name, :last_name, :address, :city, :postal_code, :state, :birthday, :cc_number)
+    params.required(:profile).permit(:first_name, :last_name, :address, :city, :postal_code, :state, :birthday, :cc_number, :member_id)
   end
 end

@@ -46,7 +46,6 @@ feature "profile management" do
       select "21", from: "profile[birthday(3i)]"
       fill_in "Credit Card Number", with: "12345678"
       click_button "Create Profile"
-      save_and_open_page
       expect(page).to have_content("Could not create profile.")
     end
   end
