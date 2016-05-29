@@ -1,2 +1,9 @@
 <h1>Profile</h1>
-<p>First Name: <%= @profile.first_name %></p>
+<p>First Name: <%= @profile.first_name %><br>
+Last Name: <%= @profile.last_name %></p>
+<p>Address: <%= @profile.address %><br>
+City: <%= @profile.city %><br>
+<%= @profile.state %> <%= @profile.postal_code %></p>
+<p>Birthday: <%= @profile.birthday.strftime("%d %B %Y") %>
+<p>Credit Card Number: <%= @profile.cc_number %></p>
+<p><%= link_to "Edit Profile", edit_member_profile_path(current_member, @profile.id) %></p>

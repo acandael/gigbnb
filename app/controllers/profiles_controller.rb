@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = current_member.build_profile
+    @profile = Profile.find(params[:id])
   end
 
   def create
@@ -14,6 +14,20 @@ class ProfilesController < ApplicationController
     else
       flash[:alert] = "Could not create profile."
       render :new 
+    end
+  end
+
+  def edit
+    @profile = Profile.find(params[:id])
+  end
+
+  def update
+    @profile = Profile.find(params[:id])
+    if @profile.update(profile_params)
+      redirect_to member_profile_path(current_member, @profile), notice: "Successfully updated profile."
+    else
+      flash[:alert] = "Could not update profile."
+      render :edit
     end
   end
 

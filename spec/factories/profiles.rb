@@ -9,6 +9,5 @@ FactoryGirl.define do
     state "MyString"
     birthday "2016-05-24"
     cc_number ""
-    references ""
   end
 end

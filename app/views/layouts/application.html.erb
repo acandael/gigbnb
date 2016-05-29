@@ -11,10 +11,10 @@
   <p class="alert"><%= alert %></p>
   <% if member_signed_in? %>
     <%= link_to "Sign out", destroy_member_session_path, method: :delete %>
-    <% if current_member.profile != nil %>
-      <%= link_to "Profile", member_profile_path(current_member, current_member.profile.id) %>
+    <% if has_profile? %>
+      <%= link_to "Profile", member_profile_path(current_member, current_member.profile) %>
     <% else %>
-      <%= link_to "Profile", new_member_profile_path(current_member) %>
+      <%= link_to "Create Profile", new_member_profile_path(current_member) %>
     <% end %>
   <% else %>
   <%= link_to "Sign in", new_member_session_path %>
