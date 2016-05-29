@@ -5,11 +5,8 @@ feature "profile management" do
   before do
     login_as(member, :scope => :member)
   end
-
-  context "with valid data" do
-    scenario "member creates profile" do
-      visit root_path
-      click_link "Create Profile"
+  
+  def fill_in_fields
       fill_in "First Name", with: "Joe"
       fill_in "Last Name", with: "Doe"
       fill_in "Address", with: "main street 36"
@@ -20,6 +17,13 @@ feature "profile management" do
       select "May", from: "profile[birthday(2i)]"
       select "21", from: "profile[birthday(3i)]"
       fill_in "Credit Card Number", with: "12345678"
+  end
+
+  context "with valid data" do
+    scenario "member creates profile" do
+      visit root_path
+      click_link "Create Profile"
+      fill_in_fields
       click_button "Create Profile"
       expect(page).to have_content("Successfully created profile.")
       profile = Profile.last
@@ -40,16 +44,7 @@ feature "profile management" do
       visit root_path
       click_link "Profile"
       click_link "Edit Profile"
-      fill_in "First Name", with: "Joe"
-      fill_in "Last Name", with: "Doe"
-      fill_in "Address", with: "main street 36"
-      fill_in "City", with: "New York"
-      fill_in "Postal Code", with: 9000
-      fill_in "State", with: "NY"
-      select "2016", from: "profile[birthday(1i)]"
-      select "May", from: "profile[birthday(2i)]"
-      select "21", from: "profile[birthday(3i)]"
-      fill_in "Credit Card Number", with: "12345678"
+      fill_in_fields
       click_button "Update Profile"
       expect(page).to have_content("Successfully updated profile.")
       expect(current_path).to eq member_profile_path(member, profile)
