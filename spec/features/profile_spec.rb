@@ -17,6 +17,8 @@ feature "profile management" do
       select "May", from: "profile[birthday(2i)]"
       select "21", from: "profile[birthday(3i)]"
       fill_in "Credit Card Number", with: "12345678"
+      profile_pic_path = 'spec/fixtures/files/profile_pic.jpg'
+      attach_file "profile[profile_pic]", profile_pic_path
   end
 
   context "with valid data" do
@@ -36,6 +38,7 @@ feature "profile management" do
       expect(page).to have_content "NY"
       expect(page).to have_content profile.birthday.strftime("%d %B %Y")
       expect(page).to have_content "12345678"
+      expect(profile).to have_attributes(profile_pic_file_name: a_value)
     end
     scenario "member edits profile" do
       profile = FactoryGirl.create(:profile)
