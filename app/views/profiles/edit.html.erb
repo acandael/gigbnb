@@ -8,6 +8,6 @@
   <%= f.input :state, label: "State" %>
   <%= f.input :birthday, label: "Birthday" %>
   <%= f.input :cc_number, label: "Credit Card Number" %>
-  <%= f.file_field :profile_pic, accept: 'image/jpeg,image/gif,image/png' %>
+  <%= f.input :profile_pic, as: :file %>
   <%= f.button :submit %>
 <% end %>
