@@ -1,0 +1,12 @@
+<%= simple_form_for [current_member, profile], html: { multipart: true } do |f| %>
+  <%= f.input :first_name, label: "First Name" %>
+  <%= f.input :last_name, label: "Last Name" %>
+  <%= f.input :address, label: "Address" %>
+  <%= f.input :city, label: "City" %>
+  <%= f.input :postal_code, label: "Postal Code" %>
+  <%= f.input :state, label: "State" %>
+  <%= f.input :birthday, label: "Birthday" %>
+  <%= f.input :cc_number, label: "Credit Card Number" %>
+  <%= f.input :profile_pic, as: :file %>
+  <%= f.button :submit %>
+<% end %>
