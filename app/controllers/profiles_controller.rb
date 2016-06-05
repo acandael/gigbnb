@@ -1,14 +1,18 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_member!
   def new
     @profile = Profile.new
+    authorize @profile
   end
 
   def show
+    authorize @profile
     @profile = Profile.find(params[:id])
   end
 
   def create
     @profile = current_member.create_profile(profile_params)
+    authorize @profile
     if @profile.save
       redirect_to member_profile_path(current_member, @profile), notice: "Successfully created profile."
     else
@@ -19,10 +23,12 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = Profile.find(params[:id])
+    authorize @profile
   end
 
   def update
     @profile = Profile.find(params[:id])
+    authorize @profile
     if @profile.update(profile_params)
       redirect_to member_profile_path(current_member, @profile), notice: "Successfully updated profile."
     else

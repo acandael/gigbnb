@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
+gem 'pundit'
 gem 'simple_form'
 gem "paperclip", "~> 5.0.0.beta2"
 gem 'aws-sdk', '~> 2.3'
