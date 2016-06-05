@@ -7,6 +7,9 @@
   <%= f.input :state, label: "State" %>
   <%= f.input :birthday, label: "Birthday" %>
   <%= f.input :cc_number, label: "Credit Card Number" %>
+  <% if profile.profile_pic.present? %>
+    <%= image_tag @profile.profile_pic.url(:small) %>
+  <% end %>
   <%= f.input :profile_pic, as: :file %>
   <%= f.button :submit %>
 <% end %>
