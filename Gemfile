@@ -28,6 +28,7 @@ gem 'simple_form'
 gem "paperclip", "~> 5.0.0.beta2"
 gem 'aws-sdk', '~> 2.3'
 gem 'rails_12factor', group: :production
+gem 'bourbon'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
