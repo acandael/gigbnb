@@ -1,0 +1,31 @@
+<section class="hero">
+  <header class="navigation" role="banner">
+    <div class="navigation-wrapper">
+      <a href="javascript:void(0)" class="logo">
+        Gigbnb
+      </a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav role="navigation">
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          <li class="nav-link"><a href="javascript:void(0)">Become a host</a></li>
+          <li class="nav-link"><a href="javascript:void(0)">Help</a></li>
+          <li class="nav-link"><a href="javascript:void(0)">Sign Up</a></li>
+          <li class="nav-link"><a href="javascript:void(0)">Login</a></li>
+          <% if member_signed_in? %>
+            <li><%= link_to "Sign out", destroy_member_session_path, method: :delete %></li>
+          <% if has_profile? %>
+            <li><%= link_to "Profile", member_profile_path(current_member, current_member.profile) %></li>
+          <% else %>
+            <li><%= link_to "Create Profile", new_member_profile_path(current_member) %></li>
+          <% end %>
+          <% else %>
+            <li><%= link_to "Sign in", new_member_session_path %></li>
+  <% end %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="body">
+  <h1>Find a gig and a sleeping place</h1>
+  </div>
+</section>

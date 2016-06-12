@@ -9,16 +9,7 @@
 <body>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <% if member_signed_in? %>
-    <%= link_to "Sign out", destroy_member_session_path, method: :delete %>
-    <% if has_profile? %>
-      <%= link_to "Profile", member_profile_path(current_member, current_member.profile) %>
-    <% else %>
-      <%= link_to "Create Profile", new_member_profile_path(current_member) %>
-    <% end %>
-  <% else %>
-  <%= link_to "Sign in", new_member_session_path %>
-  <% end %>
+  <%= render "layouts/header" %>
   <%= yield %>
 
 </body>
