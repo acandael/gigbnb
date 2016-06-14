@@ -22,8 +22,8 @@
 
   .logo {
     float: left;
-    margin-top: 1em;
     margin-left: 1em;
+    font-size: 1.5em;
 
     @include media ($medium-screen) {
       float: none;
@@ -43,14 +43,14 @@
 
   nav {
     float: none;
-    margin-top: 1em;
+    margin-top: 0.667em;
     margin-right: 1em;
 
     @include media ($medium-screen) {
       float: right;
       text-align: center;
       line-height: 1.5em;
-      padding-top: 0.3em;
+      // padding-top: 0.3em;
     }
   }
 

@@ -1,8 +1,9 @@
 section.nav {
   background-color: $brown;
-  padding: 2.25em;
+  padding: 1.5em;
+  margin-top: 0;
   a {
-    color: $white;
+    color: transparentize($white, 0.3);
   }
 }
 section.content {
