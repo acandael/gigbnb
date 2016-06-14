@@ -1,0 +1,15 @@
+section.nav {
+  background-color: #3e3a37;
+  padding: 2.25em;
+  a {
+    color: white;
+  }
+}
+section.content {
+  @include outer-container;
+  margin-top: 5.063em;
+
+  form {
+    @include span-columns(6);
+  }
+}
