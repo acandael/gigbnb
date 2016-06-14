@@ -9,6 +9,7 @@
 <body>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+  <%= render 'layouts/header' unless current_page?(root_path) %>
   <%= yield %>
 
 </body>
