@@ -7,10 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="wrapper-for-content-outside-of-footer">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= render 'layouts/header' unless current_page?(root_path) %>
   <%= yield %>
+  </div>
+  <%= render 'layouts/footer' %>
 
 </body>
 </html>
