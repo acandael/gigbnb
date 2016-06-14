@@ -12,14 +12,14 @@
           <li class="nav-link"><a href="javascript:void(0)">Sign Up</a></li>
           <li class="nav-link"><a href="javascript:void(0)">Login</a></li>
           <% if member_signed_in? %>
-            <li><%= link_to "Sign out", destroy_member_session_path, method: :delete %></li>
+            <li class="nav-link"><%= link_to "Sign out", destroy_member_session_path, method: :delete %></li>
           <% if has_profile? %>
-            <li><%= link_to "Profile", member_profile_path(current_member, current_member.profile) %></li>
+            <li class="nav-link"><%= link_to "Profile", member_profile_path(current_member, current_member.profile) %></li>
           <% else %>
-            <li><%= link_to "Create Profile", new_member_profile_path(current_member) %></li>
+            <li class="nav-link"><%= link_to "Create Profile", new_member_profile_path(current_member) %></li>
           <% end %>
           <% else %>
-            <li><%= link_to "Sign in", new_member_session_path %></li>
+            <li class="nav-link"><%= link_to "Sign in", new_member_session_path %></li>
   <% end %>
         </ul>
       </nav>
