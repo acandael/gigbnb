@@ -15,7 +15,13 @@ section.hero {
   }
 
   a {
-    color: $white;
+    color: transparentize($white, 0.3);
+    &:hover {
+      color: $white;
+    }
+    &.logo {
+      color: $white;
+    }
   }
 }
 
