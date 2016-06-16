@@ -7,13 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if flash[:notice] %>
+    <div class="flash-notice">
+      <span><%= notice %></span>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="flash-alert">
+      <span><%= alert %></span>
+    </div>
+  <% end %>
   <div class="wrapper-for-content-outside-of-footer">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
   <%= render 'layouts/header' unless current_page?(root_path) %>
   <%= yield %>
   </div>
   <%= render 'layouts/footer' %>
 
 </body>
+<script>
+  $(document).ready(function() {
+    setTimeout(function(){
+      $(".flash-alert, .flash-notice").fadeOut("slow", function() {
+        $(this).remove();
+      });
+    }, 2500);
+  });
+</script>
 </html>
