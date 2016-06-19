@@ -90,10 +90,10 @@ div.all-items {
   a.cta {
     display: block;
     padding: 1.5em;
-    background-color: darken($light-gray, 8);
+    background-color: $brown;
 
     &:hover {
-      background-color: darken($light-gray, 5);
+      background-color: transparentize($brown, 0.1);
     }
   }
 
