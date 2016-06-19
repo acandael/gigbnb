@@ -1,8 +1,8 @@
 section.hero {
   padding-top: 1em;
   background: #3e3a37;
-  background-image: url("hero.jpg");
-  background-image: url("hero.jpg"), linear-gradient(#000, #fff);
+  background-image: image-url("hero.jpg");
+  background-image: image-url("hero.jpg"), linear-gradient(#000, #fff);
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.8;
