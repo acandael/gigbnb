@@ -1,5 +1,8 @@
 section.hero {
-  background-image: image-url("hero.jpg");
+  padding-top: 1em;
+  background: #3e3a37;
+  background-image: url("hero.jpg");
+  background-image: url("hero.jpg"), linear-gradient(#000, #fff);
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.8;
@@ -15,6 +18,7 @@ section.hero {
   }
 
   a {
+    font-weight: bold;
     color: transparentize($white, 0.3);
     &:hover {
       color: $white;
@@ -23,6 +27,7 @@ section.hero {
       color: $white;
     }
   }
+
 }
 
 section.search {
@@ -81,6 +86,17 @@ div.all-items {
   @include span-columns(6);
   @include shift(3);
   height: 75px;
-  background-color: $white;
-  padding: 1.5em;
+  border-radius: 10px;
+  a.cta {
+    display: block;
+    padding: 1.5em;
+    background-color: darken($light-gray, 8);
+
+    &:hover {
+      background-color: darken($light-gray, 5);
+    }
+  }
+
+
 }
+
