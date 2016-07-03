@@ -38,5 +38,38 @@ feature "location management" do
       expect(page).to have_content "3"
       expect(page).to have_content "34.00"
     end
+    scenario "member edits location" do
+      location = FactoryGirl.create(:location)
+      location.member_id = member.id
+      location.save
+      visit member_location_path(member, location)
+      click_link "Edit"
+      fill_in "Title", with: "new title"
+      click_button "Update Location"
+      expect(page).to have_content("Successfully updated location.")
+      expect(current_path).to eq member_location_path(member, location)
+    end
+  end
+
+  context "with unvalid data" do
+    scenario "member creates profile" do
+      visit member_locations_path(member)
+      click_link "Create Location"
+      fill_in "Title", with: ""
+      click_button "Create Location"
+      expect(page).to have_content "Could not create location."
+    end
+
+    scenario "member edits location" do
+      location = FactoryGirl.create(:location)
+      location.member_id = member.id
+      location.save
+      visit member_location_path(member, location)
+      click_link "Edit"
+      fill_in "Title", with: ""
+      click_button "Update Location"
+      expect(page).to have_content("Could not update location.")
+      expect(current_path).to eq member_location_path(member, location)
+    end
   end
 end
