@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   resources :members do
     resources :profiles
+    resources :locations
   end
+
 end

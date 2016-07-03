@@ -1,0 +1,10 @@
+<h1>Location: <%= @location.title %></h1>
+<%= simple_format(@location.description) %>
+<%= simple_format(@location.address) %>
+<%= @location.city %>
+<%= @location.postal_code %>
+<%= @location.state %>
+<%= @location.country_name(@location.country) %>
+number of beds: <%= @location.beds %>
+number of guests: <%= @location.guests %>
+price: <%= number_to_currency(@location.price) %>

@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'pundit'
 gem 'simple_form'
+gem 'country_select'
 gem "paperclip", "~> 5.0.0.beta2"
 gem 'aws-sdk', '~> 2.3'
 gem 'rails_12factor', group: :production
