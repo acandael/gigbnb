@@ -16,4 +16,5 @@ Bio: <%= simple_format(@profile.bio) %>
     <%= link_to location.title, member_location_path(current_member, location) %>
   <% end %>
 <% end %>
+<%= link_to "Create Location", new_member_location_path(current_member) %>
 </section>

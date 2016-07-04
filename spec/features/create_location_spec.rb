@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature "location management" do
   let(:member) { FactoryGirl.create(:member) }
+  let(:profile) { FactoryGirl.create(:profile) }
   before do
     login_as(member, :scope => :member)
   end
@@ -20,7 +21,8 @@ feature "location management" do
   end
   context "with valid data" do
     scenario "member creates location" do
-      visit member_locations_path(member)
+      profile.member_id = member
+      visit member_profile_path(member, profile)
       click_link "Create Location"
       fill_in_fields
       click_button "Create Location"
@@ -62,7 +64,7 @@ feature "location management" do
 
   context "with unvalid data" do
     scenario "member creates profile" do
-      visit member_locations_path(member)
+      visit member_profile_path(member, profile)
       click_link "Create Location"
       fill_in "Title", with: ""
       click_button "Create Location"
