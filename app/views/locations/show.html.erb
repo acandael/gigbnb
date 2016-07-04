@@ -9,3 +9,4 @@ number of beds: <%= @location.beds %>
 number of guests: <%= @location.guests %>
 price: <%= number_to_currency(@location.price) %>
 <%= link_to "Edit", edit_member_location_path(current_member, @location) %>
+<%= link_to "Delete", member_location_path(current_member, @location), method: :delete, data: { confirm: "Are you sure?" } %>

@@ -49,6 +49,15 @@ feature "location management" do
       expect(page).to have_content("Successfully updated location.")
       expect(current_path).to eq member_location_path(member, location)
     end
+
+    scenario "member deletes location" do
+      location = FactoryGirl.create(:location)
+      location.member_id = member.id
+      location.save
+      visit member_location_path(member, location)
+      click_link "Delete"
+      expect(page).to have_content("Successfully deleted location.")
+    end
   end
 
   context "with unvalid data" do

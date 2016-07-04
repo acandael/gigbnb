@@ -31,6 +31,12 @@ class LocationsController < ApplicationController
     end
   end
 
+  def destroy
+    @location = Location.find(params[:id])
+    @location.destroy
+    redirect_to member_profile_path(current_member, current_member.profile), notice: "Successfully deleted location."
+  end
+
   private
 
   def location_params
