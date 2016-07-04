@@ -28,6 +28,7 @@ feature "location management" do
       click_button "Create Location"
       expect(page).to have_content("Successfully created location.")
       location = Location.last
+      expect(location.member_id).to eq member.id
       expect(current_path).to eq member_location_path(member, location)
       expect(page).to have_content "Lovely Duplex"
       expect(page).to have_content "appartment in the centre of Brussels"

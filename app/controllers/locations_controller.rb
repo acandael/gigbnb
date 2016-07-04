@@ -1,14 +1,18 @@
 class LocationsController < ApplicationController
+  before_action :authenticate_member!
   def new
     @location = Location.new
+    authorize @location
   end
 
   def show
     @location = Location.find(params[:id])
+    authorize @location
   end
 
   def create
-    @location = Location.create(location_params)
+    @location = current_member.locations.build(location_params)
+    authorize @location
     if @location.save
       redirect_to member_location_path(current_member, @location), notice: "Successfully created location."
     else 
