@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703100214) do
+ActiveRecord::Schema.define(version: 20160704075756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160703100214) do
   add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
 
   create_table "profiles", force: :cascade do |t|
-    t.string   "type"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "address"
@@ -68,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160703100214) do
     t.integer  "profile_pic_file_size"
     t.datetime "profile_pic_updated_at"
     t.text     "bio"
+    t.boolean  "is_host"
   end
 
   add_index "profiles", ["member_id"], name: "index_profiles_on_member_id", using: :btree
