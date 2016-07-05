@@ -17,6 +17,14 @@ ul.locations {
   @include clearfix;
 }
 
+input[type=number] {
+  width: 80px;
+  &.cc_number {
+    width: 50%;
+  }
+}
+
+
 
 
 

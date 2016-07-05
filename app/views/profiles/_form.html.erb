@@ -6,7 +6,7 @@
   <%= f.input :postal_code, label: "Postal Code" %>
   <%= f.input :state, label: "State" %>
   <%= f.input :birthday, label: "Birthday" %>
-  <%= f.input :cc_number, label: "Credit Card Number" %>
+  <%= f.input :cc_number, label: "Credit Card Number", input_html: { class: "cc_number" } %>
   <%= f.input :bio, label: "Bio" %>
   <% if profile.profile_pic.present? %>
     <%= image_tag @profile.profile_pic.url(:small) %>
