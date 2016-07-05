@@ -21,9 +21,31 @@ describe LocationPolicy do
 
     permissions :index?, :show?, :new?, :create? do
       it "grants access to member" do
+        profile.is_host = true
         profile.member_id = member.id
         profile.save
         expect(subject).to permit(member, location)
+      end
+    end
+
+    permissions :edit?, :update?, :destroy? do
+      it "denies access to member for whom the profile does not belong" do
+        expect(subject).not_to permit(member, profile)
+      end
+    end
+  end
+
+  context "for member editing own location" do
+    let(:member) { FactoryGirl.create(:member) }
+    let(:profile) { FactoryGirl.create(:profile, member_id: member.id) }
+    let(:location) { FactoryGirl.create(:location) }
+
+    permissions :edit?, :update?, :destroy? do
+      it "grants access if location belongs to member" do
+        profile.is_host = true
+        profile.member_id = member.id
+        profile.save
+        expect(subject).to permit(member, Location.create!(member_id: member.id, title: "lovely duplex"))
       end
     end
   end

@@ -23,6 +23,7 @@ class LocationsController < ApplicationController
 
   def edit
     @location = Location.find(params[:id])
+    authorize @location
   end
 
   def update

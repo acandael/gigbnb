@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "location management" do
   let(:member) { FactoryGirl.create(:member) }
-  let(:profile) { FactoryGirl.create(:profile) }
+  let(:profile) { FactoryGirl.create(:profile, member_id: member.id) }
   before do
     login_as(member, :scope => :member)
   end
@@ -21,7 +21,8 @@ feature "location management" do
   end
   context "with valid data" do
     scenario "member creates location" do
-      profile.member_id = member
+      profile.is_host = true
+      profile.save
       visit member_profile_path(member, profile)
       click_link "Create Location"
       fill_in_fields
@@ -42,6 +43,8 @@ feature "location management" do
       expect(page).to have_content "34.00"
     end
     scenario "member edits location" do
+      profile.is_host = true
+      profile.save
       location = FactoryGirl.create(:location)
       location.member_id = member.id
       location.save
@@ -54,6 +57,8 @@ feature "location management" do
     end
 
     scenario "member deletes location" do
+      profile.is_host = true
+      profile.save
       location = FactoryGirl.create(:location)
       location.member_id = member.id
       location.save
@@ -65,6 +70,8 @@ feature "location management" do
 
   context "with unvalid data" do
     scenario "member creates profile" do
+      profile.is_host = true
+      profile.save
       visit member_profile_path(member, profile)
       click_link "Create Location"
       fill_in "Title", with: ""
@@ -73,6 +80,8 @@ feature "location management" do
     end
 
     scenario "member edits location" do
+      profile.is_host = true
+      profile.save
       location = FactoryGirl.create(:location)
       location.member_id = member.id
       location.save
