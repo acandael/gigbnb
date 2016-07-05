@@ -10,13 +10,13 @@ City: <%= @profile.city %><br>
 <p><%= image_tag @profile.profile_pic.url(:small) %></p>
 Bio: <%= simple_format(@profile.bio) %>
 <p><%= link_to "Edit Profile", edit_member_profile_path(current_member, @profile.id) %></p>
-<% if @profile.is_host %>
+<% if is_host?(@profile) %>
   <h2> My locations</h2>
   <ul class="locations">
   <% current_member.locations.each do |location| %>
     <li><%= link_to location.title, member_location_path(current_member, location) %></li>
   <% end %>
   </ul>
+  <%= link_to "Create Location", new_member_location_path(current_member) %>
 <% end %>
-<%= link_to "Create Location", new_member_location_path(current_member) %>
 </section>
