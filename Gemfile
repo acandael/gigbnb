@@ -27,6 +27,7 @@ gem 'pundit'
 gem 'simple_form'
 gem 'country_select'
 gem "paperclip", "~> 5.0.0.beta2"
+gem 'dropzonejs-rails'
 gem 'aws-sdk', '~> 2.3'
 gem 'rails_12factor', group: :production
 gem 'bourbon', '~> 5.0.0.beta6'

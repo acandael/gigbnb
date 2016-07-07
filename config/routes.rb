@@ -7,4 +7,8 @@ Rails.application.routes.draw do
     resources :locations
   end
 
+  resource :locations do
+    get :add_images, on: :member
+  end
+
 end
