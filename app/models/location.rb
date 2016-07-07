@@ -1,6 +1,9 @@
 class Location < ActiveRecord::Base
   belongs_to :member
 
+  has_many :location_images
+  accepts_nested_attributes_for :location_images, allow_destroy: true
+
   validates :title, presence: true
   validates :postal_code, numericality: true
   validates :beds, numericality: true
