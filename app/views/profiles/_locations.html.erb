@@ -1,0 +1,12 @@
+<h2>My locations</h2>
+<% if has_locations? %>
+  <ul class="locations">
+  <% current_member.locations.each do |location| %>
+    <li><%= link_to location.title, member_location_path(current_member, location) %></li>
+  <% end %>
+  </ul>
+<% else %>
+  <ul>
+    <li>There are no locations</li>
+  </ul>
+<% end %>
