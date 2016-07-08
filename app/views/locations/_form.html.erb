@@ -1,4 +1,15 @@
 <%= simple_form_for [current_member, location] do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= f.input :title, label: "Title" %>
   <%= f.input :description, label: "Description" %>
   <%= f.input :address, label: "Address" %>
