@@ -34,6 +34,7 @@ feature "location management" do
       click_button "UPDATE & SAVE"
       expect(LocationImage.count).to eq 1
       expect(LocationImage.first.picture_order).to eq 1
+      expect(LocationImage.first.picture_file_name).to eq "picture_1.jpg"
       
       location = Location.last
       expect(location.member_id).to eq member.id
