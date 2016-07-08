@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   belongs_to :member
 
-  has_many :location_images
+  has_many :location_images, dependent: :destroy
   accepts_nested_attributes_for :location_images, allow_destroy: true
 
   validates :title, presence: true

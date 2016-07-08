@@ -1,5 +1,6 @@
+<section class="content">
 <p id="notice"><%= notice %></p>
-Add Images
+<h1>Add Images</h1>
 <%= form_for @location, html: { multipart: true, class: "dropzone"}  do |f| %>
   <%= f.fields_for :location_images, LocationImage.new do |image| %>
     <div class="fallback">     
@@ -8,6 +9,7 @@ Add Images
     </div>    
   <% end %>
 <% end %>
+</section>
 <script type="text/javascript">
   $(document).ready(function(){
     // disable auto discover

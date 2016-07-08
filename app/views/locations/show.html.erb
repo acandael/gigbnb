@@ -13,5 +13,8 @@ number of guests: <%= @location.guests %></p>
 <%= link_to "Edit", edit_member_location_path(current_member, @location) %>
 <%= link_to "Delete", member_location_path(current_member, @location), method: :delete, data: { confirm: "Are you sure?" } %>
 </p>
+<% @location.location_images.each do |image| %>
+  <%= image_tag image.picture %>
+<% end %>
 </section>
 
