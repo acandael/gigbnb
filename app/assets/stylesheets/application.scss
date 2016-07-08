@@ -17,9 +17,6 @@ body {
   background-color: $light-gray;
 }
 
-ul.locations {
-  @include clearfix;
-}
 
 input[type=number] {
   width: 80px;

@@ -12,11 +12,17 @@ Bio: <%= simple_format(@profile.bio) %>
 <p><%= link_to "Edit Profile", edit_member_profile_path(current_member, @profile.id) %></p>
 <% if is_host?(@profile) %>
   <h2> My locations</h2>
-  <ul class="locations">
-  <% current_member.locations.each do |location| %>
-    <li><%= link_to location.title, member_location_path(current_member, location) %></li>
+  <% if has_locations? %>
+    <ul class="locations">
+    <% current_member.locations.each do |location| %>
+      <li><%= link_to location.title, member_location_path(current_member, location) %></li>
+    <% end %>
+    </ul>
+  <% else %>
+    <ul>
+      <li>There are no locations</li>
+    </ul>
   <% end %>
-  </ul>
   <%= link_to "Create Location", new_member_location_path(current_member) %>
 <% end %>
 </section>

@@ -6,4 +6,8 @@ module ApplicationHelper
   def is_host?(profile)
     profile.is_host != nil && profile.is_host
   end
+
+  def has_locations?
+    current_member.locations.any?
+  end
 end

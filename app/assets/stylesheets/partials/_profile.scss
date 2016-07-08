@@ -13,4 +13,15 @@ section.content {
   form {
     @include span-columns(6);
   }
+
+
+  ul.locations {
+    @include clearfix;
+    list-style-type: bullet;
+    li {
+      display: block;
+    }
+  }
 }
+
+
