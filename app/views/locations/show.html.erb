@@ -16,5 +16,6 @@ number of guests: <%= @location.guests %></p>
 <% @location.location_images.each do |image| %>
   <%= image_tag image.picture.url(:medium) %>
 <% end %>
+<p><%= link_to "Add Images", add_images_location_path(@location) %></p>
 </section>
 
