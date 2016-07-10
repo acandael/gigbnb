@@ -1,7 +1,8 @@
 class ProfilesController < ApplicationController
+  before_action :set_member
   before_action :authenticate_member!
   def new
-    @profile = Profile.new
+    @profile = @member.build_profile
     authorize @profile
   end
 
@@ -11,10 +12,10 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = current_member.create_profile(profile_params)
+    @profile = @member.create_profile(profile_params)
     authorize @profile
     if @profile.save
-      redirect_to member_profile_path(current_member, @profile), notice: "Successfully created profile."
+      redirect_to member_profile_path(@member, @profile), notice: "Successfully created profile."
     else
       flash[:alert] = "Could not create profile."
       render :new 
@@ -41,5 +42,9 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.required(:profile).permit(:first_name, :last_name, :address, :city, :postal_code, :state, :birthday, :cc_number, :member_id, :profile_pic, :bio)
+  end
+
+  def set_member
+    @member = current_member
   end
 end
