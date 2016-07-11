@@ -17,8 +17,8 @@ feature "profile management" do
       select "May", from: "profile[birthday(2i)]"
       select "21", from: "profile[birthday(3i)]"
       fill_in "Credit Card Number", with: "12345678"
-      profile_pic_path = 'spec/fixtures/files/profile_pic.jpg'
       fill_in "Bio", with: "a programmer living in Ghent"
+      profile_pic_path = 'spec/fixtures/files/profile_pic.jpg'
       attach_file "profile[profile_pic]", profile_pic_path
   end
 

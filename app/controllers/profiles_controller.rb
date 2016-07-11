@@ -45,6 +45,6 @@ class ProfilesController < ApplicationController
   end
 
   def set_member
-    @member = current_member
+    @member = Member.find(params[:member_id])
   end
 end
