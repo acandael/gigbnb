@@ -2,9 +2,7 @@ FactoryGirl.define do
   factory :location do
     title "Lovely duplex"
     description "appartment in the centre of Brussels"
-    address "Smidsestraat 36"
-    postal_code 9000
-    country "BE"
+    address
     beds 2
     guests 3
     price 34.00
