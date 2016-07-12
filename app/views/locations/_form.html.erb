@@ -12,11 +12,15 @@
   <% end %>
   <%= f.input :title, label: "Title" %>
   <%= f.input :description, label: "Description" %>
-  <%= f.input :address, label: "Address" %>
-  <%= f.input :city, label: "City" %>
-  <%= f.input :postal_code, label: "Postal code" %>
-  <%= f.input :state, label: "State" %>
-  <%= f.input :country, label: "Country" %>
+  <%= f.simple_fields_for :address do |a| %>
+    <%= a.input :street  %>
+    <%= a.input :city %>
+    <%= a.input :postal_code %>
+    <%= a.input :state %>
+    <%= a.input :country %>
+    <%= a.input :latitude %>
+    <%= a.input :longitude %>
+  <% end %>
   <%= f.input :beds, label: "Number of beds" %>
   <%= f.input :guests, label: "Number of guests" %>
   <%= f.input :price, label: "Price" %>

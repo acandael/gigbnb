@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require dropzone
+//= require underscore
+//= require gmaps/google
+//= require markerclusterer
 //= require_tree .

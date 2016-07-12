@@ -32,6 +32,11 @@ gem 'aws-sdk', '~> 2.3'
 gem 'rails_12factor', group: :production
 gem 'bourbon', '~> 5.0.0.beta6'
 gem 'neat'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'markerclustererplus-rails'
+gem 'underscore-rails'
+gem "figaro"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

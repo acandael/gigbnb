@@ -1,11 +1,11 @@
 <section class="content">
 <h1>Location: <%= @location.title %></h1>
 <%= simple_format(@location.description) %>
-<p>Address: <%= @location.address %>
-<%= @location.city %><br>
-<%= @location.postal_code %>
-<%= @location.state %><br> 
-<%= @location.country_name(@location.country) %></p>
+<p>Address: <%= @location.address.street %>
+<%= @location.address.city %><br>
+<%= @location.addess.postal_code %>
+<%= @location.address.state %><br> 
+<%= @location.address.country_name(@location.address.country) %></p>
 <p>number of beds: <%= @location.beds %><br>
 number of guests: <%= @location.guests %></p>
 <p>price: <%= number_to_currency(@location.price) %></p>
@@ -17,5 +17,20 @@ number of guests: <%= @location.guests %></p>
   <%= image_tag image.picture.url(:medium) %>
 <% end %>
 <p><%= link_to "Add Images", add_images_location_path(@location) %></p>
+
+<div style='width: 800px;'>
+ <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
 </section>
+
+<script type="text/javascript">
+ handler = Gmaps.build('Google');
+ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+ markers = handler.addMarker(<%=raw @coordinates.to_json %>);
+ handler.bounds.extendWith(markers);
+ handler.fitMapToBounds(markers);
+ handler.getMap().setZoom(15);
+ });
+</script>
 
