@@ -7,12 +7,13 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
+    @location.build_address
     authorize @location
   end
 
   def show
     @location = Location.find(params[:id])
-    @coordinates = {lng: @location.longitude, lat: @location.latitude}
+    @coordinates = {lng: @location.address.longitude, lat: @location.address.latitude}
     authorize @location
   end
 
@@ -62,6 +63,6 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    params.required(:location).permit(:member_id, :title, :description, :beds, :guests, :price, address_attributes: [:street, :city, :postal_code, :country, :longitude, :latitude], location_images_attributes: [:id, :picture, :picture_order, :_destroy, :location_id])
+    params.required(:location).permit(:member_id, :title, :description, :beds, :guests, :price, address_attributes: [:id, :street, :city, :postal_code, :state, :country, :longitude, :latitude], location_images_attributes: [:id, :picture, :picture_order, :_destroy, :location_id])
   end
 end

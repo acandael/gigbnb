@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   has_many :location_images, dependent: :destroy
-  has_one :address
+  has_one :address, dependent: :destroy
   accepts_nested_attributes_for :address, :location_images, allow_destroy: true
 
   validates :title, presence: true
