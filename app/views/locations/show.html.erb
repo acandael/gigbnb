@@ -1,5 +1,10 @@
 <section class="content">
   <h1>Location: <%= @location.title %></h1>
+  <p>
+  <%= link_to member_profile_path(current_member, @profile) do %>
+    <%= image_tag @profile.profile_pic.url(:small), class: "host" %>
+  <% end %> 
+  </p>
   <%= simple_format(@location.description) %>
   <% if @location.address.present? %>
     <%= render 'address', address: @location.address %>

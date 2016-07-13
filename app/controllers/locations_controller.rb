@@ -13,6 +13,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @profile = current_member.profile
     @coordinates = {lng: @location.address.longitude, lat: @location.address.latitude}
     authorize @location
   end

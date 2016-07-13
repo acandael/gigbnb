@@ -10,10 +10,12 @@ feature "location management" do
   def fill_in_fields
     fill_in "Title", with: "Lovely Duplex"
     fill_in "Description", with: "appartment in the centre of Brussels"
-    fill_in "Address", with: "Smidsestraat 36"
+    fill_in "Street", with: "Smidsestraat 36"
     fill_in "City", with: "Brussel"
     fill_in "Postal code", with: 1000
     fill_in "State", with: "Oost-Vlaanderen"
+    fill_in "Latitude", with: 51.308193
+    fill_in "Longitude", with: 3.116116
     select "Belgium", from: "Country"
     fill_in "Number of beds", with: 2
     fill_in "Number of guests", with: 3
