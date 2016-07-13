@@ -1,7 +1,7 @@
 class LocationImage < ActiveRecord::Base
 
   belongs_to :location
-  has_attached_file :picture, styles: { medium: "300x300#" }
+  has_attached_file :picture, styles: { small: "150x150#", medium: "300x300#" }
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
 
   after_create :set_picture_order
