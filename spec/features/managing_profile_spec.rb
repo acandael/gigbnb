@@ -31,16 +31,7 @@ feature "profile management" do
       expect(page).to have_content("Successfully created profile.")
       profile = Profile.last
       expect(current_path).to eq member_profile_path(member, profile)
-      expect(page).to have_content "Joe"
-      expect(page).to have_content "Doe"
-      expect(page).to have_content "main street 36"
-      expect(page).to have_content "New York"
-      expect(page).to have_content "9000"
-      expect(page).to have_content "NY"
-      expect(page).to have_content profile.birthday.strftime("%d %B %Y")
-      expect(page).to have_content "12345678"
       expect(profile).to have_attributes(profile_pic_file_name: a_value)
-      expect(page).to have_content "a programmer living in Ghent"
     end
     scenario "member edits profile" do
       profile = FactoryGirl.create(:profile)
@@ -54,6 +45,8 @@ feature "profile management" do
       expect(page).to have_content("Successfully updated profile.")
       expect(current_path).to eq member_profile_path(member, profile)
       expect(page).to have_content "Joe"
+      expect(page).to have_content "Doe"
+      expect(page).to have_content "a programmer living in Ghent"
     end
   end
 
@@ -83,10 +76,12 @@ feature "profile management" do
       click_link "Profile"
       click_link "Edit Profile"
       fill_in "First Name", with: ""
+      fill_in "Last Name", with: "Doe"
       click_button "Update Profile"
       expect(page).to have_content("Could not update profile.")
       expect(current_path).to eq member_profile_path(member, profile)
       expect(profile.first_name).not_to eq ""
+      expect(profile.last_name).not_to eq "Doe"
     end
   end
 end
