@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :location do
     title "Lovely duplex"
-    description "appartment in the centre of Brussels"
+    description FFaker::Lorem.paragraph
     address
     beds 2
     guests 3
