@@ -9,8 +9,7 @@ feature "member views profile" do
   
   it "sees the profile data" do
     visit member_profile_path(member, profile)
-    expect(page).to have_content profile.first_name
-    expect(page).to have_content profile.last_name
+    expect(page).to have_content profile.fullname
     expect(page).to have_content profile.bio
     expect(page).to have_content profile.address
     expect(page).to have_content profile.city
