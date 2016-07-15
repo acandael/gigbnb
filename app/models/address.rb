@@ -2,6 +2,7 @@ class Address < ActiveRecord::Base
   belongs_to :location
   geocoded_by :full_street_address
 
+
   validates :postal_code, numericality: true
 
   def country_name(country_code)
@@ -10,7 +11,7 @@ class Address < ActiveRecord::Base
   end
    
   def full_street_address
-   [street, city, state, country].compact.join(", ")
+   [street, city, postal_code, state, country].compact.join(", ")
   end
 
   def address_changed?

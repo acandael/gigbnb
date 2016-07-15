@@ -45,7 +45,7 @@ describe LocationPolicy do
         profile.is_host = true
         profile.member_id = member.id
         profile.save
-        expect(subject).to permit(member, Location.create!(member_id: member.id, title: "lovely duplex", postal_code: 9000, beds: 2, guests: 3, price: 34))
+        expect(subject).to permit(member, Location.create!(member_id: member.id, title: "lovely duplex", beds: 2, guests: 3, price: 34))
       end
     end
   end

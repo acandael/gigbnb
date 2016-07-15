@@ -9,7 +9,7 @@ RSpec.describe Address, type: :model do
     expect(address.country_name("BE")).to eq "Belgium"
   end
   it "should return the full address" do
-    expect(address.full_street_address).to eq "Grote Edestraat 50, Blankenberge, West-Vlaanderen, BE"
+    expect(address.full_street_address).to eq "#{address.street}, #{address.city}, #{address.postal_code}, #{address.state}, #{address.country}"
   end
   it "notices when address is changed" do
     address.city = "Gent"
