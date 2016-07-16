@@ -41,16 +41,6 @@ feature "location management" do
       location = Location.last
       expect(location.member_id).to eq member.id
       expect(current_path).to eq member_location_path(member, location)
-      expect(page).to have_content "Lovely Duplex"
-      expect(page).to have_content "appartment in the centre of Brussels"
-      expect(page).to have_content "Smidsestraat 36"
-      expect(page).to have_content "Brussel"
-      expect(page).to have_content "1000"
-      expect(page).to have_content "Oost-Vlaanderen"
-      expect(page).to have_content "Belgium"
-      expect(page).to have_content "2"
-      expect(page).to have_content "3"
-      expect(page).to have_content "34.00"
     end
     scenario "member edits location" do
       profile.is_host = true
@@ -64,6 +54,7 @@ feature "location management" do
       click_button "Update Location"
       expect(page).to have_content("Successfully updated location.")
       expect(current_path).to eq member_location_path(member, location)
+      expect(page).to have_content "new title"
     end
 
     scenario "member deletes location" do
@@ -75,6 +66,7 @@ feature "location management" do
       visit member_location_path(member, location)
       click_link "Delete"
       expect(page).to have_content("Successfully deleted location.")
+      expect(Location.count).to eq 0
     end
 
     scenario "member who is not a host doesn't see create location" do
@@ -86,7 +78,7 @@ feature "location management" do
   end
 
   context "with unvalid data" do
-    scenario "member creates profile" do
+    scenario "member creates location" do
       profile.is_host = true
       profile.save
       visit member_profile_path(member, profile)
@@ -94,6 +86,8 @@ feature "location management" do
       fill_in "Title", with: ""
       click_button "Create Location"
       expect(page).to have_content "Could not create location."
+      expect(page).to have_content "Title can't be blank"
+      expect(current_path).to eq member_locations_path(member)
     end
 
     scenario "member edits location" do
@@ -107,6 +101,7 @@ feature "location management" do
       fill_in "Title", with: ""
       click_button "Update Location"
       expect(page).to have_content("Could not update location.")
+      expect(page).to have_content "Title can't be blank"
       expect(current_path).to eq member_location_path(member, location)
     end
   end
