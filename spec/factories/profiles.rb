@@ -5,7 +5,7 @@ FactoryGirl.define do
     address FFaker::Address.street_address
     city FFaker::Address.city
     postal_code 9000
-    state FFaker::Address.us_state
+    state FFaker::AddressUS.state
     birthday "2016-05-24"
     cc_number 123456
     bio FFaker::Lorem.paragraph
