@@ -1,7 +1,6 @@
 class Location < ActiveRecord::Base
   belongs_to :member
 
-  # after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   has_many :location_images, dependent: :destroy
   has_one :address, dependent: :destroy

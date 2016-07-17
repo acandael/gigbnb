@@ -2,6 +2,7 @@ class Address < ActiveRecord::Base
   belongs_to :location
   geocoded_by :full_street_address
 
+  after_validation :geocode, if: ->(obj){ obj.street.present? and obj.address_changed? }
 
   validates :postal_code, numericality: true
 
