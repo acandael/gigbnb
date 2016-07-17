@@ -5,7 +5,7 @@ FactoryGirl.define do
     postal_code 8370
     state FFaker::AddressUS.state
     country FFaker::Address.country_code
-    latitude 51.308193
-    longitude 3.116116
+    latitude FFaker::Geolocation.lat
+    longitude FFaker::Geolocation.lng
   end
 end
