@@ -1,11 +1,11 @@
 <section class="content">
   <h1><%= @location.title %></h1>
-  <p>
-  <%= link_to member_profile_path(current_member, @profile) do %>
-    <%= image_tag @profile.profile_pic.url(:small), class: "host" %>
-    <%= @profile.first_name %> <%= @profile.last_name %>
-  <% end %> 
-  </p>
+  <%= simple_form_for [current_member, Reservation.new] do |f| %>
+    <%= f.hidden_field :location_id, value: @location.id %>
+    <%= f.input :start_date, value: Date.tomorrow %>
+    <%= f.input :end_date, value: Date.today + 2.days %>
+    <%= f.submit 'Reserve this location' %>
+  <% end %>
   <%= simple_format(@location.description) %>
   <% if @location.address.present? %>
     <%= render 'address', address: @location.address %>

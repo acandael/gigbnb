@@ -3,6 +3,7 @@ class Location < ActiveRecord::Base
 
 
   has_many :location_images, dependent: :destroy
+  has_many :reservations
   has_one :address, dependent: :destroy
   accepts_nested_attributes_for :address, :location_images, allow_destroy: true
 
