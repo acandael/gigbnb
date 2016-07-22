@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :address do
-    street FFaker::Address.street_name
-    city FFaker::Address.city
+    street Faker::Address.street_name
+    city Faker::Address.city
     postal_code 8370
-    state FFaker::AddressUS.state
-    country FFaker::Address.country_code
-    latitude FFaker::Geolocation.lat
-    longitude FFaker::Geolocation.lng
+    state Faker::Address.state
+    country Faker::Address.country_code
+    latitude Faker::Address.latitude
+    longitude Faker::Address.longitude
   end
 end

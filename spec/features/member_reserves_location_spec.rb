@@ -13,6 +13,9 @@ feature "reservations" do
      expect {
        click_button "Reserve this location"
      }.to change(Reservation, :count)
+     expect(location.reservations.count).to eq 1
+     reservation = Reservation.last
+     expect(reservation.member).to eq guest
      expect(current_path). to eq reservation_confirmation_path(Reservation.last)
      expect(page).to have_content "You reserved location #{location.title}"
     end
