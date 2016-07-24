@@ -18,6 +18,13 @@ feature "managing available dates" do
       expect(current_path).to eq calendar_location_path(location)
       expect(page).to have_content "Successfully added available dates"
     end
+
+    it "doesn't see add available dates link when not a host" do
+      FactoryGirl.create(:profile, member_id: member.id, is_host: false)
+      location = FactoryGirl.create(:location, member_id: member.id)
+      visit member_location_path(member, location)
+      expect(page).not_to have_link "Add available dates for this location"
+    end
   end
 
   context "with invalid data" do
