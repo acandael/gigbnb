@@ -17,4 +17,6 @@
 //= require underscore
 //= require gmaps/google
 //= require markerclusterer
+//= require pickadate/picker
+//= require pickadate/picker.date
 //= require_tree .

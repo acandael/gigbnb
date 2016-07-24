@@ -64,10 +64,14 @@ class LocationsController < ApplicationController
 
   def add_available_dates
     @location = Location.find(params[:id])
+    if params[:start_date] != "" && params[:end_date] != ""
     @location.create_available_dates(params[:start_date],
     params[:end_date])
     redirect_to calendar_location_path(@location), notice: "Successfully
     added available dates"
+    else
+      render calendar_location(@path), notice: "The available date could not be added"
+    end
   end
 
   private
