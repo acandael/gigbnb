@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719124655) do
+ActiveRecord::Schema.define(version: 20160723074246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20160719124655) do
   end
 
   add_index "addresses", ["location_id"], name: "index_addresses_on_location_id", using: :btree
+
+  create_table "available_dates", force: :cascade do |t|
+    t.integer "location_id"
+    t.boolean "reserved"
+    t.date    "available_date"
+  end
+
+  add_index "available_dates", ["location_id"], name: "index_available_dates_on_location_id", using: :btree
 
   create_table "location_images", force: :cascade do |t|
     t.integer  "location_id"
@@ -124,6 +132,7 @@ ActiveRecord::Schema.define(version: 20160719124655) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "addresses", "locations"
+  add_foreign_key "available_dates", "locations"
   add_foreign_key "location_images", "locations"
   add_foreign_key "reservations", "locations"
   add_foreign_key "reservations", "members"

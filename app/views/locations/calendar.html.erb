@@ -1,0 +1,8 @@
+<%= form_tag({controller: "locations", action: "add_available_dates"},
+method: "get") do %>
+ <%= label_tag 'start date' %>
+ <%= text_field_tag :start_date %>
+ <%= label_tag 'end date' %>
+ <%= text_field_tag :end_date %>
+ <%= submit_tag "Add available dates" %>
+<% end %>
