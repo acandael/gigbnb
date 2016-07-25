@@ -13,6 +13,4 @@ class Reservation < ActiveRecord::Base
       available. Please try different dates."
     end
   end
-
-
 end
