@@ -4,10 +4,13 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.create(reservation_params)
+    member = Member.find(params[:member_id])
+    @reservation = Reservation.new(reservation_params)
     if @reservation.save
       redirect_to reservation_confirmation_path(@reservation), notice: "Successfully created reservation."
-      
+    else
+      flash[:error] = "Could not reserve the location"
+      render member_location_path(member, @reservation.location)
     end
   end
 

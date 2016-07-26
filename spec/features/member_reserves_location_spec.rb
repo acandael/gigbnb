@@ -24,14 +24,20 @@ feature "reservations" do
 
   context "with invalid data" do
     it "does not reserve a location that's already booked" do
-     FactoryGirl.create(:profile, member_id: guest.id)
-     location= FactoryGirl.create(:location, member_id: guest.id)
-     
-     FactoryGirl.create(:reservation, start_date: Date.today, end_date: Date.today + 2.days, location_id: location.id)
-     visit member_location_path(host, location)
-     expect {
-       click_button "Reserve this location"
-     }.not_to change(Reservation, :count)
+      FactoryGirl.create(:profile, member_id: guest.id)
+      location= FactoryGirl.create(:location, member_id: guest.id)
+      FactoryGirl.create(:reservation, start_date: Date.tomorrow, end_date: Date.today + 2.days, location_id: location.id)
+      visit member_location_path(host, location)
+      click_button "Reserve this location"
+      expect(page).to have_content "Could not reserve the location"
+    end
+    it "does not reserve a location in the past" do
+      FactoryGirl.create(:profile, member_id: guest.id)
+      location= FactoryGirl.create(:location, member_id: guest.id)
+      FactoryGirl.create(:reservation, start_date: Date.yesterday, end_date: Date.today + 2.days, location_id: location.id)
+      visit member_location_path(host, location)
+      click_button "Reserve this location"
+      expect(page).to have_content "Could not reserve the location"
     end
   end
 end

@@ -1,14 +1,16 @@
 <section class="content">
   <h1><%= @location.title %></h1>
+  <div class="reservation">
   <%= simple_form_for [current_member, Reservation.new] do |f| %>
     <%= f.hidden_field :location_id, value: @location.id %>
     <%= f.hidden_field :member_id, value: current_member.id %>
-    <%= f.input :start_date, value: Date.tomorrow %>
-    <%= f.input :end_date, value: Date.today + 2.days %>
+    <%= f.input :start_date, default: Date.tomorrow %>
+    <%= f.input :end_date, default: Date.today + 2.days %>
     <%= f.submit 'Reserve this location' %>
   <% end %>
   <% if is_host?(current_member.profile) %>
-  <%= link_to "Add available dates for this location", calendar_location_path(@location) %>
+    <p><%= link_to "Add available dates for this location", calendar_location_path(@location) %></p>
+  </div>
   <% end %>
   <%= simple_format(@location.description) %>
   <% if @location.address.present? %>

@@ -1,8 +1,4 @@
 section.content {
-  form.dropzone {
-    width: 80%;
-  }
-
   .host {
     border-radius: 50px;
   }
@@ -11,4 +7,15 @@ section.content {
     clear: both;
     margin-top: 1em;
   }
+
+  form.new_reservation {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  div.reservation {
+    @include span-columns(4);
+    float: right;
+  }
+
 }
