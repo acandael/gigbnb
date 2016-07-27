@@ -34,6 +34,8 @@ feature "reservations" do
       visit member_location_path(host, location)
       click_button "Reserve this location"
       expect(page).to have_content "Could not reserve the location"
+      available_date = AvailableDate.last
+      expect(available_date.reserved).to be false
     end
     it "does not reserve a location in the past" do
       FactoryGirl.create(:profile, member_id: guest.id)
@@ -45,6 +47,8 @@ feature "reservations" do
       select Date.yesterday.strftime("%d"), from: "reservation[start_date(3i)]"
       click_button "Reserve this location"
       expect(page).to have_content "Could not reserve the location"
+      available_date = AvailableDate.last
+      expect(available_date.reserved).to be false
     end
   end
 end
