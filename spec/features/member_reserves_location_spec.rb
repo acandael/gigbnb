@@ -34,8 +34,10 @@ feature "reservations" do
     it "does not reserve a location in the past" do
       FactoryGirl.create(:profile, member_id: guest.id)
       location= FactoryGirl.create(:location, member_id: guest.id)
-      FactoryGirl.create(:reservation, start_date: Date.yesterday, end_date: Date.today + 2.days, location_id: location.id)
       visit member_location_path(host, location)
+      select Date.today.year, from: "reservation[start_date(1i)]"
+      select Date::MONTHNAMES[Date.today.month], from: "reservation[start_date(2i)]"
+      select Date.yesterday.strftime("%d"), from: "reservation[start_date(3i)]"
       click_button "Reserve this location"
       expect(page).to have_content "Could not reserve the location"
     end

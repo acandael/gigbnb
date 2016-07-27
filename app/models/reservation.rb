@@ -19,4 +19,12 @@ class Reservation < ActiveRecord::Base
       errors[:base] << "The reservation should not be in the past. Please try different dates."
     end
   end
+
+  def no_available_date_set
+    reservation_array =  (start_date..end_date).to_a
+    available_dates = AvailableDate.where(location_id: location.id).where(available_date: reservation_array)
+    if available_dates.count == 0
+      errors[:base] << "Host has not set an available date for this location"
+    end
+  end
 end
