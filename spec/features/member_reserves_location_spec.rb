@@ -10,6 +10,7 @@ feature "reservations" do
   context "with valid data" do
     it "reserves a location" do
      FactoryGirl.create(:profile, member_id: guest.id)
+      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
      visit member_location_path(host, location)
      expect {
        click_button "Reserve this location"
@@ -26,6 +27,7 @@ feature "reservations" do
     it "does not reserve a location that's already booked" do
       FactoryGirl.create(:profile, member_id: guest.id)
       location= FactoryGirl.create(:location, member_id: guest.id)
+      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
       FactoryGirl.create(:reservation, start_date: Date.tomorrow, end_date: Date.today + 2.days, location_id: location.id)
       visit member_location_path(host, location)
       click_button "Reserve this location"
@@ -34,6 +36,7 @@ feature "reservations" do
     it "does not reserve a location in the past" do
       FactoryGirl.create(:profile, member_id: guest.id)
       location= FactoryGirl.create(:location, member_id: guest.id)
+      AvailableDate.create(location_id: location.id, available_date: Date.yesterday, reserved: false)
       visit member_location_path(host, location)
       select Date.today.year, from: "reservation[start_date(1i)]"
       select Date::MONTHNAMES[Date.today.month], from: "reservation[start_date(2i)]"

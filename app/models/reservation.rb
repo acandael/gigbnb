@@ -1,7 +1,7 @@
 class Reservation < ActiveRecord::Base
   belongs_to :location
   belongs_to :member
-  validate :dates_are_available, :dates_are_not_in_past
+  validate :dates_are_available, :dates_are_not_in_past, :no_available_date_set
 
   def dates_are_available
     start_date_overlap = location.reservations.where(start_date:
