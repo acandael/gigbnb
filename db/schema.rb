@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723074246) do
+ActiveRecord::Schema.define(version: 20160727171157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160723074246) do
 
   create_table "available_dates", force: :cascade do |t|
     t.integer "location_id"
-    t.boolean "reserved"
+    t.boolean "reserved",       default: false
     t.date    "available_date"
   end
 

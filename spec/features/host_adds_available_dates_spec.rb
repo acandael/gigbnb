@@ -17,6 +17,8 @@ feature "managing available dates" do
       expect(AvailableDate.count).to eq 2
       expect(current_path).to eq calendar_location_path(location)
       expect(page).to have_content "Successfully added available dates"
+      available_date = AvailableDate.last
+      expect(available_date.reserved).to be false
     end
 
     it "doesn't see add available dates link when not a host" do

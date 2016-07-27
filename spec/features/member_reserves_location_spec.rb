@@ -20,6 +20,8 @@ feature "reservations" do
      expect(reservation.member).to eq guest
      expect(current_path). to eq reservation_confirmation_path(Reservation.last)
      expect(page).to have_content "You reserved location #{location.title}"
+     available_date = AvailableDate.last
+     expect(available_date.reserved).to be true
     end
   end
 

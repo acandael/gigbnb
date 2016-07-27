@@ -7,6 +7,9 @@ class ReservationsController < ApplicationController
     member = Member.find(params[:member_id])
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
+      location = @reservation.location
+      reservation_array =  (@reservation.start_date..@reservation.end_date - 1.day).to_a
+      AvailableDate.where(location_id: location.id).where(available_date: reservation_array).update_all(reserved: true)
       redirect_to reservation_confirmation_path(@reservation), notice: "Successfully created reservation."
     else
       flash[:error] = "Could not reserve the location"
