@@ -22,7 +22,7 @@ class Location < ActiveRecord::Base
   end
 
   def future_available_dates
-    future_dates = available_dates.where(“available_date >= ?”, Date.
+    future_dates = available_dates.where("available_date >= ?", Date.
 today)
     future_dates.where(reserved: false)
   end
