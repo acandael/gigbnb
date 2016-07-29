@@ -38,6 +38,7 @@ gem 'markerclustererplus-rails'
 gem 'underscore-rails'
 gem "figaro"
 gem 'pickadate-rails'
+gem 'fullcalendar-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

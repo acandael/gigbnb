@@ -19,4 +19,5 @@
 //= require markerclusterer
 //= require pickadate/picker
 //= require pickadate/picker.date
+//= require fullcalendar
 //= require_tree .

@@ -10,6 +10,14 @@
   <% end %>
   <% if is_host?(current_member.profile) %>
     <p><%= link_to "Add available dates for this location", calendar_location_path(@location) %></p>
+
+  <div id="calendar", style='width: 600px;'></div>
+  <script type="text/javascript">
+  $('#calendar').fullCalendar({
+  events: '<%=@location.id%>.json',
+  eventBackgroundColor: "green"
+  });
+  </script>
   </div>
   <% end %>
   <%= simple_format(@location.description) %>

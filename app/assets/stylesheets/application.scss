@@ -2,6 +2,7 @@
 *= require dropzone/dropzone
 *= require pickadate/default
 *= require pickadate/default.date
+*= require fullcalendar
 */
 
 @import "bourbon";
@@ -26,6 +27,10 @@ input[type=number] {
   &.cc_number {
     width: 50%;
   }
+}
+
+.fc-past {
+background-color: silver;
 }
 
 
