@@ -39,7 +39,7 @@ feature "profile management" do
       profile.save
       visit root_path
       click_link "Profile"
-      click_link "Edit Profile"
+      click_button "Edit Profile"
       fill_in_fields
       click_button "Update Profile"
       expect(page).to have_content("Successfully updated profile.")
@@ -74,7 +74,7 @@ feature "profile management" do
       profile.save
       visit root_path
       click_link "Profile"
-      click_link "Edit Profile"
+      click_button "Edit Profile"
       fill_in "First Name", with: ""
       fill_in "Last Name", with: "Doe"
       click_button "Update Profile"

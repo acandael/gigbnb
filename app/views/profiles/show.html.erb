@@ -11,7 +11,7 @@
   <%= button_to "Edit Profile", edit_member_profile_path(current_member, @profile.id), method: :get %>
   <% if is_host?(@profile) %>
     <%= render 'locations', profile: @profile %>
-    <%= link_to "Create Location", new_member_location_path(current_member) %>
+    <%= button_to "Create Location", new_member_location_path(current_member), method: :get %>
   <% end %>
   <p><%= link_to "My Reservations", member_reservations_path(current_member) %></p>
 </section>

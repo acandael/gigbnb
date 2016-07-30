@@ -19,16 +19,4 @@ feature "member views profile" do
     expect(page).to have_content profile.cc_number
     expect(page).to have_css("img[src*='profile_pic']")
   end
-
-  it "host sees Create Location link" do
-    profile.is_host = true
-    profile.save
-    visit member_profile_path(member, profile)
-    expect(page).to have_content "Create Location"
-  end
-
-  it "guest does not see Create Location link" do
-    visit member_profile_path(member, profile)
-    expect(page).not_to have_content "Create Location"
-  end
 end

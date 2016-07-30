@@ -26,7 +26,7 @@ feature "location management" do
       profile.is_host = true
       profile.save
       visit member_profile_path(member, profile)
-      click_link "Create Location"
+      click_button "Create Location"
       fill_in_fields
       click_button "Create Location"
       expect(page).to have_content("Successfully created location.")
@@ -82,7 +82,7 @@ feature "location management" do
       profile.is_host = true
       profile.save
       visit member_profile_path(member, profile)
-      click_link "Create Location"
+      click_button "Create Location"
       fill_in "Title", with: ""
       click_button "Create Location"
       expect(page).to have_content "Could not create location."
