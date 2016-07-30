@@ -1,17 +1,17 @@
 <section class="content">
   <h1>Profile</h1>
-  <p>First Name: <%= @profile.fullname %></p>
+  <p><%= image_tag @profile.profile_pic.url(:small) %></p>
+  <p><%= @profile.fullname %></p>
   <p>Address: <%= @profile.address %><br>
   City: <%= @profile.city %><br>
   <%= @profile.state %> <%= @profile.postal_code %></p>
   <p>Birthday: <%= @profile.birthday.strftime("%d %B %Y") %>
   <p>Credit Card Number: <%= @profile.cc_number %></p>
-  <p><%= image_tag @profile.profile_pic.url(:small) %></p>
   Bio: <%= simple_format(@profile.bio) %>
-  <p><%= link_to "Edit Profile", edit_member_profile_path(current_member, @profile.id) %></p>
+  <%= button_to "Edit Profile", edit_member_profile_path(current_member, @profile.id), method: :get %>
   <% if is_host?(@profile) %>
     <%= render 'locations', profile: @profile %>
     <%= link_to "Create Location", new_member_location_path(current_member) %>
   <% end %>
-  <%= link_to "My Reservations", member_reservations_path(current_member) %>
+  <p><%= link_to "My Reservations", member_reservations_path(current_member) %></p>
 </section>

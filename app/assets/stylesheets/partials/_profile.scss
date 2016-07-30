@@ -10,8 +10,12 @@ section.content {
   @include outer-container;
   margin-top: 5.063em;
 
-  form {
+  form.new_location {
     @include span-columns(6);
+  }
+
+  .button_to {
+    margin-bottom: 1em;
   }
 
 

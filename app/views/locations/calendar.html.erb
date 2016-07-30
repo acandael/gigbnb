@@ -1,7 +1,6 @@
 <section class="content">
   <h1>Available Dates</h1>
-  <%= form_tag({controller: "locations", action: "add_available_dates"},
-  method: "get") do %>
+  <%= form_tag({controller: "locations", action: "add_available_dates"}, method: "get", class: "available_date") do %>
   <%= label_tag 'start date' %>
   <%= text_field_tag :start_date %>
   <%= label_tag 'end date' %>

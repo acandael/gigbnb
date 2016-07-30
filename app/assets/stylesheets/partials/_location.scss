@@ -13,6 +13,11 @@ section.content {
     margin-bottom: 1em;
   }
 
+  form.available_date {
+    @include span-columns(6);
+    margin-bottom: 2em;
+  }
+
   div.reservation {
     @include span-columns(4);
     float: right;
