@@ -8,9 +8,17 @@
   <%= text_field_tag :end_date %>
   <%= submit_tag "Add available dates" %>
   <% end %>
+  <div id="calendar", style='width: 600px;'></div>
 </section>
 
 <script>
 $("#start_date").pickadate({format: 'yyyy-mm-dd'});
 $("#end_date").pickadate({format: 'yyyy-mm-dd'});
+</script>
+
+
+<script type="text/javascript">
+ $('#calendar').fullCalendar({
+ events: '/locations/<%=@location.id%>/calendar.json'
+ });
 </script>

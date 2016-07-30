@@ -10,8 +10,8 @@
   <% end %>
   <% if is_host?(current_member.profile) %>
     <p><%= link_to "Add available dates for this location", calendar_location_path(@location) %></p>
+    <div id="calendar", style='width: 400px;'></div>
 
-  <div id="calendar", style='width: 600px;'></div>
   </div>
   <% end %>
   <%= simple_format(@location.description) %>
@@ -29,7 +29,6 @@
     <%= image_tag image.picture.url(:small) %>
   <% end %>
   <p><%= link_to "Add Images", add_images_location_path(@location) %></p>
-
   <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 400px;'></div>
   </div>

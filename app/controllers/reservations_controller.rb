@@ -1,4 +1,9 @@
 class ReservationsController < ApplicationController
+
+  def index
+    member = Member.find(params[:member_id])
+    @reservations = member.reservations
+  end
   def new
     @reservation = Reservation.new 
   end

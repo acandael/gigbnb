@@ -6,4 +6,5 @@ class Member < ActiveRecord::Base
 
   has_one :profile
   has_many :locations
+  has_many :reservations
 end

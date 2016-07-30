@@ -18,6 +18,10 @@ class LocationsController < ApplicationController
     authorize @location
   end
 
+  def calendar
+    @location = Location.find(params[:id])
+  end
+
   def create
     @location = current_member.locations.build(location_params)
     authorize @location
