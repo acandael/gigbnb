@@ -10,7 +10,7 @@ section.content {
   @include outer-container;
   margin-top: 5.063em;
 
-  form.new_location {
+  form.new_location, form.edit_profile {
     @include span-columns(6);
   }
 
