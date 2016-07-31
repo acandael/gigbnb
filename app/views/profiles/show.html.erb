@@ -1,5 +1,11 @@
 <section class="content">
   <h1>Profile</h1>
+  <p>Account type:
+  <% if @profile.is_host %>
+    <%= "Host" %>
+  <% else %>
+    <%= "Guest" %>
+  <% end %>
   <p><%= image_tag @profile.profile_pic.url(:small) %></p>
   <p><%= @profile.fullname %></p>
   <p>Address: <%= @profile.address %><br>
