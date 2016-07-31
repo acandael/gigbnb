@@ -4,6 +4,6 @@
 </section>
 <script type="text/javascript">
  $('#calendar').fullCalendar({
-events: '/reservations.json'
+   events: '/members/<%= @member.id %>/reservations.json'
  });
 </script>
