@@ -19,6 +19,7 @@ feature "profile management" do
       fill_in "Credit Card Number", with: "12345678"
       fill_in "Bio", with: "a programmer living in Ghent"
       profile_pic_path = 'spec/fixtures/files/profile_pic.jpg'
+      check "Is host"
       attach_file "profile[profile_pic]", profile_pic_path
   end
 
@@ -32,6 +33,7 @@ feature "profile management" do
       profile = Profile.last
       expect(current_path).to eq member_profile_path(member, profile)
       expect(profile).to have_attributes(profile_pic_file_name: a_value)
+      expect(profile.is_host).to be true
     end
     scenario "member edits profile" do
       profile = FactoryGirl.create(:profile)

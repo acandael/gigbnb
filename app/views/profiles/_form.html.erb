@@ -23,5 +23,6 @@
     <%= image_tag @profile.profile_pic.url(:small) %>
   <% end %>
   <%= f.input :profile_pic, as: :file %>
+  <%= f.input :is_host %>
   <%= f.button :submit %>
 <% end %>

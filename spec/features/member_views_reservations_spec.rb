@@ -9,8 +9,9 @@ feature "member views his reservations" do
     login_as(member, :scope => :member)
   end
 
-it "views the reservation", js: true do
+  it "views the reservation", js: true do
    visit member_reservations_path(member)
+   save_and_open_page
    expect(page).to have_content "Reservation 1" 
   end
 end
