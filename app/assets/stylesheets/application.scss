@@ -37,6 +37,12 @@ background-color: silver;
   margin-top: 1em;
 }
 
+form.new_member {
+  @include span-columns(6);
+  float: none;
+  margin-bottom: 2em;
+}
+
 
 
 
