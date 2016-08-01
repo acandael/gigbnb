@@ -6,7 +6,7 @@ feature "managing available dates" do
     login_as(member, :scope => :member)
   end
   context "with valid data" do
-    it "host adds available date" do
+    scenario "host adds available date" do
       FactoryGirl.create(:profile, member_id: member.id, is_host: true)
       location = FactoryGirl.create(:location, member_id: member.id)
       visit member_location_path(member, location)
@@ -21,7 +21,7 @@ feature "managing available dates" do
       expect(available_date.reserved).to be false
     end
 
-    it "doesn't see add available dates link when not a host" do
+    scenario "doesn't see add available dates link when not a host" do
       FactoryGirl.create(:profile, member_id: member.id, is_host: false)
       location = FactoryGirl.create(:location, member_id: member.id)
       visit member_location_path(member, location)
@@ -30,7 +30,7 @@ feature "managing available dates" do
   end
 
   context "with invalid data" do
-    it "does not add an available date" do
+    scenario "does not add an available date" do
       FactoryGirl.create(:profile, member_id: member.id, is_host: true)
       location = FactoryGirl.create(:location, member_id: member.id)
       visit calendar_location_path(location)

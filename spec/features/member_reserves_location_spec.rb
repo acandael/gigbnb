@@ -8,7 +8,7 @@ feature "reservations" do
     login_as(guest, :scope => :member)
   end
   context "with valid data" do
-    it "reserves a location" do
+    scenario "reserves a location" do
      FactoryGirl.create(:profile, member_id: guest.id)
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
      visit member_location_path(host, location)
@@ -26,7 +26,7 @@ feature "reservations" do
   end
 
   context "with invalid data" do
-    it "does not reserve a location that's already booked" do
+    scenario "does not reserve a location that's already booked" do
       FactoryGirl.create(:profile, member_id: guest.id)
       location= FactoryGirl.create(:location, member_id: guest.id)
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
@@ -37,7 +37,7 @@ feature "reservations" do
       available_date = AvailableDate.last
       expect(available_date.reserved).to be false
     end
-    it "does not reserve a location in the past" do
+    scenario "does not reserve a location in the past" do
       FactoryGirl.create(:profile, member_id: guest.id)
       location= FactoryGirl.create(:location, member_id: guest.id)
       AvailableDate.create(location_id: location.id, available_date: Date.yesterday, reserved: false)

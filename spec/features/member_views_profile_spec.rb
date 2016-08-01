@@ -7,7 +7,7 @@ feature "member views profile" do
     login_as(member, :scope => :member)
   end
   
-  it "sees the profile data" do
+  scenario "sees the profile data" do
     visit member_profile_path(member, profile)
     expect(page).to have_content profile.fullname
     expect(page).to have_content profile.bio

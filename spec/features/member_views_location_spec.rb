@@ -10,7 +10,7 @@ feature "member views location" do
     login_as(member, :scope => :member)
   end
 
-  it "views the location data" do
+  scenario "views the location data" do
     @profile = profile
     visit member_location_path(member, location)
     expect(page).to have_content address.street
