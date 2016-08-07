@@ -15,4 +15,9 @@ RSpec.describe Address, type: :model do
     address.city = "Gent"
     expect(address.address_changed?).to be_truthy
   end
+
+  it "returns an address near a city" do
+    address = Address.create!(city: "Gent", state: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70)
+    expect(Address.near("Gent, Oost-Vlaanderen", 50)).to include(address)
+  end
 end
