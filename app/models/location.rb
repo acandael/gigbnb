@@ -13,6 +13,8 @@ class Location < ActiveRecord::Base
   validates :guests, numericality: true
   validates :price, numericality: true
 
+  scope :nearby, ->(address) { joins(:address).near(address, 50) if address.present? }
+
   def create_available_dates(start_date, end_date)
     dates = start_date.upto(end_date)
     dates.each do |date|

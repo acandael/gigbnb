@@ -29,4 +29,12 @@ RSpec.describe Location, type: :model do
       expect(date.reserved).to be false
     end
   end
+
+  it "searches the nearby location" do
+    location = FactoryGirl.create(:location)
+    address = Address.create!(city: "Gent", state: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70, location_id: location.id)
+    binding.pry
+    expect(Location.nearby(address)).to eq address
+    
+  end
 end
