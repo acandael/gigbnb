@@ -21,6 +21,7 @@ RSpec.describe Location, type: :model do
 
   it "returns the future dates" do
     location = FactoryGirl.create(:location)
+    FactoryGirl.create(:address, location_id: location.id)
     AvailableDate.create(available_date: Date.tomorrow, reserved: false, location_id: location.id)
     AvailableDate.create(available_date: Date.today + 2.days, reserved: false, location_id: location.id)
     future_available_dates = location.future_available_dates
@@ -33,7 +34,9 @@ RSpec.describe Location, type: :model do
   it "searches the nearby location" do
     location = FactoryGirl.create(:location)
     address = Address.create!(city: "Gent", state: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70, location_id: location.id)
-    expect(Location.nearby(address)).to include(address)
+    address_search = "Gent, Oost-Vlaanderen"
+    expect(Location.nearby(address_search)).to include(location)
+
     
   end
 end

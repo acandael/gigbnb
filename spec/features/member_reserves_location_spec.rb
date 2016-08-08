@@ -9,6 +9,7 @@ feature "reservations" do
   end
   context "with valid data" do
     scenario "reserves a location" do
+     FactoryGirl.create(:address, location_id: location.id)
      FactoryGirl.create(:profile, member_id: guest.id)
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
      visit member_location_path(host, location)
@@ -30,21 +31,9 @@ feature "reservations" do
       FactoryGirl.create(:profile, member_id: guest.id)
       location= FactoryGirl.create(:location, member_id: guest.id)
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
+      FactoryGirl.create(:address, location_id: location.id)
       FactoryGirl.create(:reservation, start_date: Date.tomorrow, end_date: Date.today + 2.days, location_id: location.id)
       visit member_location_path(host, location)
-      click_button "Reserve this location"
-      expect(page).to have_content "Could not reserve the location"
-      available_date = AvailableDate.last
-      expect(available_date.reserved).to be false
-    end
-    scenario "does not reserve a location in the past" do
-      FactoryGirl.create(:profile, member_id: guest.id)
-      location= FactoryGirl.create(:location, member_id: guest.id)
-      AvailableDate.create(location_id: location.id, available_date: Date.yesterday, reserved: false)
-      visit member_location_path(host, location)
-      select Date.today.year, from: "reservation[start_date(1i)]"
-      select Date::MONTHNAMES[Date.today.month], from: "reservation[start_date(2i)]"
-      select Date.yesterday.strftime("%d"), from: "reservation[start_date(3i)]"
       click_button "Reserve this location"
       expect(page).to have_content "Could not reserve the location"
       available_date = AvailableDate.last

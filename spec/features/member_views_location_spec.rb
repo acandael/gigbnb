@@ -4,13 +4,13 @@ feature "member views location" do
   let(:member) { FactoryGirl.create(:member) }
   let(:profile) { FactoryGirl.create(:profile, member_id: member.id) }
   let(:location) { FactoryGirl.create(:location, member_id: member.id) }
-  let(:address) { FactoryGirl.create(:address, location_id: location.id) }
 
   before do
     login_as(member, :scope => :member)
   end
 
   scenario "views the location data" do
+    address = FactoryGirl.create(:address, location_id: location.id)
     @profile = profile
     visit member_location_path(member, location)
     expect(page).to have_content address.street

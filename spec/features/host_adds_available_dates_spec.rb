@@ -9,6 +9,7 @@ feature "managing available dates" do
     scenario "host adds available date" do
       FactoryGirl.create(:profile, member_id: member.id, is_host: true)
       location = FactoryGirl.create(:location, member_id: member.id)
+      FactoryGirl.create(:address, location_id: location.id)
       visit member_location_path(member, location)
       click_link "Add available dates for this location"
       fill_in "Start date", with: Date.today
