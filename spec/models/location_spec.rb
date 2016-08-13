@@ -33,7 +33,7 @@ RSpec.describe Location, type: :model do
 
   it "searches the nearby location" do
     location = FactoryGirl.create(:location)
-    Address.create!(city: "Gent", state: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70, location_id: location.id)
+    Address.create!(city: "Gent", region: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70, location_id: location.id)
     address_search = "Gent, Oost-Vlaanderen"
     expect(Location.nearby(address_search)).to include(location)
   end
@@ -42,7 +42,7 @@ RSpec.describe Location, type: :model do
     location = FactoryGirl.create(:location)
     available_date = AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
     date_range_array = Date.tomorrow..Date.today + 2.days
-    Address.create!(city: "Gent", state: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70, location_id: location.id)
+    Address.create!(city: "Gent", region: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70, location_id: location.id)
     expect(Location.with_available_dates(date_range_array)).to include(location)
   end
 end

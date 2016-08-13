@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727171157) do
+ActiveRecord::Schema.define(version: 20160813091324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160727171157) do
     t.float   "latitude"
     t.float   "longitude"
     t.integer "location_id"
-    t.string  "state"
+    t.string  "region"
   end
 
   add_index "addresses", ["location_id"], name: "index_addresses_on_location_id", using: :btree

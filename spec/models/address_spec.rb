@@ -9,7 +9,7 @@ RSpec.describe Address, type: :model do
     expect(address.country_name("BE")).to eq "Belgium"
   end
   it "should return the full address" do
-    expect(address.full_street_address).to eq "#{address.street}, #{address.city}, #{address.postal_code}, #{address.state}, #{address.country}"
+    expect(address.full_street_address).to eq "#{address.street}, #{address.city}, #{address.postal_code}, #{address.region}, #{address.country}"
   end
   it "notices when address is changed" do
     address.city = "Gent"
@@ -17,7 +17,7 @@ RSpec.describe Address, type: :model do
   end
 
   it "returns an address near a city" do
-    address = Address.create!(city: "Gent", state: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70)
+    address = Address.create!(city: "Gent", region: "Oost-Vlaanderen", postal_code: 9000, country: "BE", latitude: 51.05, longitude: 3.70)
     expect(Address.near("Gent, Oost-Vlaanderen", 50)).to include(address)
   end
 end

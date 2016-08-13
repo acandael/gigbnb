@@ -15,7 +15,7 @@ feature "member views location" do
     visit member_location_path(member, location)
     expect(page).to have_content address.street
     expect(page).to have_content address.city
-    expect(page).to have_content address.state
+    expect(page).to have_content address.region
     expect(page).to have_content address.country_name(address.country)
     expect(page).to have_content location.description
     expect(page).to have_content "2 beds"

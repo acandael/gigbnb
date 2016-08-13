@@ -3,7 +3,7 @@ FactoryGirl.define do
     street Faker::Address.street_name
     city Faker::Address.city
     postal_code 8370
-    state Faker::Address.state
+    region Faker::Address.state
     country Faker::Address.country_code
     latitude Faker::Address.latitude
     longitude Faker::Address.longitude

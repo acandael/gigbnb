@@ -12,10 +12,10 @@ class Address < ActiveRecord::Base
   end
    
   def full_street_address
-   [street, city, postal_code, state, country].compact.join(", ")
+   [street, city, postal_code, region, country].compact.join(", ")
   end
 
   def address_changed?
-    street_changed? || city_changed? || state_changed? || country_changed?
+    street_changed? || city_changed? || region_changed? || country_changed?
   end
 end
