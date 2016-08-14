@@ -30,12 +30,19 @@
 </section>
 <section class="search">
   <div class="search-bar">
-  <form role="search">
-    <input type="search" placeholder="Enter Search">
-    <button type="submit">
-      Search
-    </button>
-  </form>
+  <%= form_tag locations_path, method: :get do %>
+  <%= label_tag(:start_date, "Check In") %>
+  <%= text_field_tag(:start_date, nil, id: "start_date") %>
+  <%= label_tag(:end_date, "Check Out") %>
+  <%= text_field_tag(:end_date, nil, id: "end_date") %>
+  <%= label_tag(:city, "City") %>
+  <%= select_tag(:city, options_for_select(Address.city_names),
+  prompt: "Select City")%>
+  <%= label_tag(:region, "State/Province") %>
+  <%= select_tag(:region, options_for_select(Address.region_names),
+  prompt: "Select State/Region") %>
+  <%= submit_tag "Search For Location" %>
+  <% end %>
   </div>
 </section>
 <section class="row">
@@ -47,7 +54,10 @@
     <li><%= image_tag "new-york.jpg" %></li>
     <li><%= image_tag "new-york.jpg" %></li>
   </ul>
-  <div class="all-items"><a class="cta" href="">See all Locations</a></div>
+  <div class="all-items"><%= link_to 'See all Locations', locations_path %></div>
 </section>
 
-
+<script>
+$("#start_date").pickadate({format: 'yyyy-mm-dd'});
+$("#end_date").pickadate({format: 'yyyy-mm-dd'});
+</script>

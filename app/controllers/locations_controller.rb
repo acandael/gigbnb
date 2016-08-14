@@ -1,6 +1,22 @@
 class LocationsController < ApplicationController
   before_action :authenticate_member!
 
+
+  def index
+    if params[:commit].present?
+      @locations = SearchForLocationService.new({
+      start_date: params[:start_date],
+      end_date: params[:end_date],
+      city: params[:city],
+      region: params[:region],
+      country: params[:country]
+      }).matches
+    else
+      @locations = Location.all
+    end
+  end
+
+
   def add_images
     @location = Location.find(params[:id])
   end

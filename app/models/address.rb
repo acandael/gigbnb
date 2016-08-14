@@ -18,4 +18,12 @@ class Address < ActiveRecord::Base
   def address_changed?
     street_changed? || city_changed? || region_changed? || country_changed?
   end
+
+  def self.city_names
+    Address.distinct.pluck(:city).sort!
+  end
+
+  def self.region_names
+  Address.distinct.pluck(:region).sort!
+  end
 end

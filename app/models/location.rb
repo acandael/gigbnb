@@ -32,4 +32,5 @@ class Location < ActiveRecord::Base
 today)
     future_dates.where(reserved: false)
   end
+
 end
