@@ -31,17 +31,23 @@
 <section class="search">
   <div class="search-bar">
   <%= form_tag locations_path, method: :get do %>
-  <%= label_tag(:start_date, "Check In") %>
-  <%= text_field_tag(:start_date, nil, id: "start_date") %>
-  <%= label_tag(:end_date, "Check Out") %>
-  <%= text_field_tag(:end_date, nil, id: "end_date") %>
-  <%= label_tag(:city, "City") %>
-  <%= select_tag(:city, options_for_select(Address.city_names),
-  prompt: "Select City")%>
-  <%= label_tag(:region, "State/Province") %>
-  <%= select_tag(:region, options_for_select(Address.region_names),
-  prompt: "Select State/Region") %>
-  <%= submit_tag "Search For Location" %>
+    <div class="block">
+      <%= label_tag(:start_date, "Check In") %>
+      <%= text_field_tag(:start_date, nil, id: "start_date") %>
+      <%= label_tag(:end_date, "Check Out") %>
+      <%= text_field_tag(:end_date, nil, id: "end_date") %>
+    </div>
+    <div class="block">
+      <%= label_tag(:city, "City") %>
+      <%= select_tag(:city, options_for_select(Address.city_names),
+      prompt: "Select City")%>
+      <%= label_tag(:region, "State/Province") %>
+      <%= select_tag(:region, options_for_select(Address.region_names),
+      prompt: "Select State/Region") %>
+    </div>
+    <div class="block">
+      <%= submit_tag "Search For Location" %>
+    </div>
   <% end %>
   </div>
 </section>
