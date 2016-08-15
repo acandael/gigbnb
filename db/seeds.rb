@@ -3,6 +3,7 @@ address_options = [{city: "Gent", region: "Oost-Vlaanderen", postal_code: 9000, 
 20.times do 
     address_option = address_options.sample
     location = Location.create(title: "lovely duplex", description: "lovely duplex in the centre of Brussels", beds: 2, guests: 3, price: 34.00)
+    LocationImage.create(picture: File.new("spec/fixtures/files/living-room.jpg"), location_id: location.id)
     address = location.create_address(
       city: address_option[:city], 
       region: address_option[:region],

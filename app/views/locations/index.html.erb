@@ -3,9 +3,11 @@
 <%= link_to "Create Location", new_member_location_path(current_member) %>
 <% @locations.each do |location| %>
   <h2><%= link_to location.title, member_location_path(current_member, location) %></h2>
+  <%= image_tag location.location_images.first.picture.url(:small) %>
   <p><%= location.description %></p>
   <% if location.address.present? %>
-    <p><%= location.address.city %></p>
+    <p><%= location.address.street %><br>
+  <%= location.address.city %></p>
   <% end %>
 <% end %>
 </section>
