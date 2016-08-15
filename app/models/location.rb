@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
   validates :guests, numericality: true
   validates :price, numericality: true
 
-  scope :nearby, ->(address) { joins(:address).merge(Address.near(address, 50)) if address.present? }
+scope :nearby, ->(address) { includes(:address).references(:address).merge(Address.near(address, 50)) if address.present? }
 
   scope :with_available_dates, ->(date_range_array) {
     joins(:available_dates).merge(AvailableDate.available_for_reservation(date_range_array)) if date_range_array.present?

@@ -32,6 +32,7 @@ section.hero {
 
 section.search {
   @include shift(1);
+  @include clearfix;
   padding: 2.25em;
   // background-color: $brown;
 

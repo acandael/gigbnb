@@ -1,7 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_member!
 
-
   def index
     if params[:commit].present?
       @locations = SearchForLocationService.new({

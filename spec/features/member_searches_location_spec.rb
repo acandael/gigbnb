@@ -17,10 +17,11 @@ feature "search location" do
   scenario "member searches for location" do
     location = FactoryGirl.create(:location)
     Address.create(street: "Smidsestraat 36", city: "Gent", postal_code: 9000, region: "Oost-Vlaanderen", country: "BE", latitude: 51.05, longitude: 3.72, location_id: location.id)
-    AvailableDate.create(available_date: Date.tomorrow)
+    AvailableDate.create(available_date: Date.tomorrow, location_id: location.id)
     visit root_path
     fill_in_fields
     click_button "Search"
+    save_and_open_page
     expect(page).to have_content(location)
   end
 end
