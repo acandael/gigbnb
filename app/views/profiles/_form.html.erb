@@ -16,7 +16,7 @@
   <%= f.input :city, label: "City" %>
   <%= f.input :postal_code, label: "Postal Code" %>
   <%= f.input :state, label: "State" %>
-  <%= f.input :birthday, label: "Birthday" %>
+  <%= f.input :birthday, as: :date, start_year: 1950, label: "Birthday" %>
   <%= f.input :cc_number, label: "Credit Card Number", input_html: { class: "cc_number" } %>
   <%= f.input :bio, label: "Bio" %>
   <% if profile.profile_pic.present? %>
