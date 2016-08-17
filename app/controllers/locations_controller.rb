@@ -11,7 +11,7 @@ class LocationsController < ApplicationController
       country: params[:country]
       }).matches
     else
-      @locations = Location.all
+      @locations = Location.all.page(params[:page]).per(5)
     end
   end
 

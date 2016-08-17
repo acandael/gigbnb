@@ -5,7 +5,7 @@ FactoryGirl.define do
   end
 
   factory :location do
-    title "Lovely duplex"
+    title
     description Faker::Lorem.paragraph
     beds 2
     guests 3
