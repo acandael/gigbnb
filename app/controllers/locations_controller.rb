@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
       city: params[:city],
       region: params[:region],
       country: params[:country]
-      }).matches
+      }).matches.page(params[:page]).per(5)
     else
       @locations = Location.all.page(params[:page]).per(5)
     end
