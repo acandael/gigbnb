@@ -1,0 +1,6 @@
+section.content {
+  @include span-columns(12);
+}
+.pagination {
+  @include shift(5);
+} 

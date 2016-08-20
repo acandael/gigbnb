@@ -15,20 +15,14 @@ feature "search location" do
   end
 
   scenario "member searches for location with available date" do
-    location = FactoryGirl.create(:location)
-    location2 = FactoryGirl.create(:location)
-    location3 = FactoryGirl.create(:location)
-    Address.create(street: "Smidsestraat 36", city: "Gent", postal_code: 9000, region: "Oost-Vlaanderen", country: "BE", latitude: 51.05, longitude: 3.72, location_id: location.id)
-    Address.create(street: "Dynastielaan 10", city: "De Panne", postal_code: 8660, region: "West-Vlaanderen", country: "BE", latitude: 51.09, longitude: 2.57, location_id: location2.id)
-    Address.create(street: "Universiteitstraat 8", city: "Gent", postal_code: 9000, region: "Oost-Vlaanderen", country: "BE", latitude: 51.05, longitude: 3.72, location_id: location3.id)
-    AvailableDate.create(available_date: Date.tomorrow, location_id: location.id)
-    AvailableDate.create(available_date: Date.tomorrow, location_id: location2.id)
+  location_in_gent_no_dates = FactoryGirl.create(:location)
+  location_in_gent_with_dates = FactoryGirl.create(:location_in_gent_with_available_dates)
+  location_in_de_panne_with_dates = FactoryGirl.create(:location_in_de_panne_with_available_dates)
     visit root_path
     fill_in_fields
     click_button "Search"
-    expect(page).to have_content(location.address.city)
-    expect(page).to have_content(location.address.street)
-    expect(page).not_to have_content(location2.address.city)
-    expect(page).not_to have_content(location3.address.street)
+    expect(page).to have_content(location_in_gent_with_dates.address.city)
+    expect(page).not_to have_content(location_in_gent_no_dates.title)
+    expect(page).not_to have_content(location_in_de_panne_with_dates.address.street)
   end
 end
