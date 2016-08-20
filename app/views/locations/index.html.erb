@@ -1,16 +1,20 @@
 <section class="content">
 <h1>Locations</h1>
 <%= link_to "Create Location", new_member_location_path(current_member) %>
-<% @locations.each do |location| %>
-  <h2><%= link_to location.title, member_location_path(current_member, location) %></h2>
-  <% if location.location_images.present? %>
-    <%= image_tag location.location_images.first.picture.url(:small) %>
+<div class="locations">
+  <% @locations.each do |location| %>
+    <div class="location">
+      <h2><%= link_to location.title, member_location_path(current_member, location) %></h2>
+      <% if location.location_images.present? %>
+        <%= image_tag location.location_images.first.picture.url(:small) %>
+      <% end %>
+      <p><%= location.description %></p>
+      <% if location.address.present? %>
+        <p><%= location.address.street %><br>
+      <%= location.address.city %></p>
+      <% end %>
+    </div><!-- end location div -->
   <% end %>
-  <p><%= location.description %></p>
-  <% if location.address.present? %>
-    <p><%= location.address.street %><br>
-  <%= location.address.city %></p>
-  <% end %>
-<% end %>
+</div><!-- end locations div -->
 <%= paginate @locations %>
 </section>

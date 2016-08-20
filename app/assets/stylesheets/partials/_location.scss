@@ -3,6 +3,16 @@ section.content {
     border-radius: 50px;
   }
 
+  .locations {
+   display: block; 
+   @include clearfix;
+  }
+
+  .location {
+    @include span-columns(3);
+    @include omega(4n);
+  }
+
   form.button_to {
     clear: both;
     margin-top: 1em;
