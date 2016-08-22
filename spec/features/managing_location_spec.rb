@@ -64,10 +64,11 @@ feature "location management" do
       location = FactoryGirl.create(:location)
       location.member_id = member.id
       location.save
-      FactoryGirl.create(:address, location_id: location.id)
+      # FactoryGirl.create(:address, location_id: location.id)
       visit member_location_path(member, location)
       click_link "Delete"
       expect(page).to have_content("Successfully deleted location.")
+      expect(Location.count).to eq 0
     end
 
     scenario "member who is not a host doesn't see create location" do
