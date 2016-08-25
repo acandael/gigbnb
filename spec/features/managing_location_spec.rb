@@ -11,7 +11,7 @@ feature "location management" do
     fill_in "Title", with: "Lovely Duplex"
     fill_in "Description", with: "appartment in the centre of Brussels"
     fill_in "Street", with: "Smidsestraat 36"
-    fill_in "City", with: "Brussel"
+    fill_in "City", with: "Gent"
     fill_in "Postal code", with: 1000
     fill_in "Region", with: "Oost-Vlaanderen"
     fill_in "Latitude", with: 51.308193

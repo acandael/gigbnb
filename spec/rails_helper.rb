@@ -94,3 +94,31 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+Geocoder.configure(:lookup => :test)
+
+Geocoder::Lookup::Test.add_stub(
+  "Gent, Oost-Vlaanderen", [
+    {
+      'latitude'     => 51.04,
+      'longitude'    => 3.71,
+      'address'      => 'Smidsestraat 36',
+      'region'        => 'Oost-Vlaanderen',
+      'postal_code' => 9000,
+      'country_code' => 'BE'
+    }
+  ]
+)
+
+Geocoder::Lookup::Test.add_stub(
+  "De Panne, West-Vlaanderen", [
+    {
+      'latitude'     => 51.09,
+      'longitude'    => 2.58,
+      'address'      => 'De Panne',
+      'region'        => 'West-Vlaanderen',
+      'postal_code' => 9000,
+      'country_code' => 'BE'
+    }
+  ]
+)
