@@ -18,8 +18,7 @@ class ReservationsController < ApplicationController
       AvailableDate.where(location_id: location.id).where(available_date: reservation_array).update_all(reserved: true)
       redirect_to reservation_confirmation_path(@reservation), notice: "Successfully created reservation."
     else
-      flash[:error] = "Could not reserve the location"
-      redirect_to member_location_path(member, @reservation.location), notice: "Could not create reservation."
+      redirect_to member_location_path(member, @reservation.location), notice: "Could not reserve the location."
     end
   end
 

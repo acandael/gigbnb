@@ -35,7 +35,7 @@ feature "reservations" do
       FactoryGirl.create(:reservation, start_date: Date.tomorrow, end_date: Date.today + 2.days, location_id: location.id)
       visit member_location_path(host, location)
       click_button "Reserve this location"
-      expect(page).to have_content "Could not reserve the location"
+      expect(page).to have_content "Could not reserve the location."
       available_date = AvailableDate.last
       expect(available_date.reserved).to be false
     end
