@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
       redirect_to reservation_confirmation_path(@reservation), notice: "Successfully created reservation."
     else
       flash[:error] = "Could not reserve the location"
-      render member_location_path(member, @reservation.location)
+      redirect_to member_location_path(member, @reservation.location), notice: "Could not create reservation."
     end
   end
 

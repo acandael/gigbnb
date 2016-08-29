@@ -108,30 +108,3 @@ Geocoder::Lookup::Test.set_default_stub(
   ]
 )
 
-# Geocoder::Lookup::Test.add_stub(
-#   "Smidsestraat 36, Gent, 9000, Oost-Vlaanderen, BE", [
-#     {
-#       'latitude'     => 51.04,
-#       'longitude'    => 3.71,
-#       'street'      => 'Smidsestraat 36',
-#       'city' => 'Gent',
-#       'region'        => 'Oost-Vlaanderen',
-#       'postal_code' => 9000,
-#       'country_code' => 'BE'
-#     }
-#   ]
-# )
-#
-# Geocoder::Lookup::Test.add_stub(
-#   "De Pannelaan 68, De Panne, 8660, West-Vlaanderen, BE", [
-#     {
-#       'latitude'     => 51.09,
-#       'longitude'    => 2.58,
-#       'street'      => 'De Pannelaan 68',
-#       'city' => 'De Panne',
-#       # 'region'        => 'West-Vlaanderen',
-#       # 'postal_code' => 8660,
-#       'country_code' => 'BE'
-#     }
-#   ]
-# )
