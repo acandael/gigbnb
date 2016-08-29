@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  let(:address) { FactoryGirl.build(:address) }
+  let(:address) { FactoryGirl.build(:address_in_gent) }
   it { should belong_to(:location) }
   it { should validate_numericality_of(:postal_code) }
 

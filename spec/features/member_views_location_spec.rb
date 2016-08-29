@@ -10,7 +10,7 @@ feature "member views location" do
   end
 
   scenario "views the location data" do
-    address = FactoryGirl.create(:address, location_id: location.id)
+    address = FactoryGirl.create(:address_in_gent, location_id: location.id)
     @profile = profile
     visit member_location_path(member, location)
     expect(page).to have_content address.street

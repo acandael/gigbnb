@@ -10,7 +10,7 @@ FactoryGirl.define do
     beds 2
     guests 3
     price 34.00
-    after(:create) {|instance| create(:address, location: instance) }
+    after(:create) {|instance| create(:address_in_gent, location: instance) }
     factory :location_with_available_dates do
       after(:create) {|instance| create(:available_date, location: instance) }
       after(:create) {|instance| create(:available_date, location: instance,

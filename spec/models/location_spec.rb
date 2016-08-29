@@ -21,7 +21,7 @@ RSpec.describe Location, type: :model do
 
   it "returns the future dates" do
     location = FactoryGirl.create(:location)
-    FactoryGirl.create(:address, location_id: location.id)
+    FactoryGirl.create(:address_in_gent, location_id: location.id)
     AvailableDate.create(available_date: Date.tomorrow, reserved: false, location_id: location.id)
     AvailableDate.create(available_date: Date.today + 2.days, reserved: false, location_id: location.id)
     future_available_dates = location.future_available_dates

@@ -9,7 +9,7 @@ feature "reservations" do
   end
   context "with valid data" do
     scenario "reserves a location" do
-     FactoryGirl.create(:address, location_id: location.id)
+     FactoryGirl.create(:address_in_gent, location_id: location.id)
      FactoryGirl.create(:profile, member_id: guest.id)
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
      visit member_location_path(host, location)
@@ -31,7 +31,7 @@ feature "reservations" do
       FactoryGirl.create(:profile, member_id: guest.id)
       location= FactoryGirl.create(:location, member_id: guest.id)
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
-      FactoryGirl.create(:address, location_id: location.id)
+      FactoryGirl.create(:address_in_gent, location_id: location.id)
       FactoryGirl.create(:reservation, start_date: Date.tomorrow, end_date: Date.today + 2.days, location_id: location.id)
       visit member_location_path(host, location)
       click_button "Reserve this location"
