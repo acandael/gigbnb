@@ -22,6 +22,8 @@ class ReservationsController < ApplicationController
     end
   end
 
+
+
   def confirmation
     @reservation = Reservation.find(params[:reservation_id])
   end
