@@ -15,5 +15,8 @@ feature "Host authorizes Stripe Connect" do
   expect(page).to have_content "Congrats on connecting your Stripe account!"
   member.reload
   expect(member.stripe_user_id).not_to eq nil
+  expect(member.stripe_publishable_key).not_to eq nil
+  expect(member.stripe_refresh_token).not_to eq nil
+  expect(member.stripe_access_token).not_to eq nil
  end
 end
