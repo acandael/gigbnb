@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :members
+  devise_for :members, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   root "home#index"
 
   resources :members do
+    get :payout_account, on: :member
     resources :profiles
     resources :locations
     resources :reservations
