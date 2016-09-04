@@ -11,7 +11,9 @@
   <% if is_host?(current_member.profile) %>
     <p><%= link_to "Add available dates for this location", calendar_location_path(@location) %></p>
     <div id="calendar", style='width: 400px;'></div>
-
+    <% if authorized_stripe?(current_member) %>
+      <%= link_to "Publish" %>
+    <% end %>
   </div>
   <% end %>
   <%= simple_format(@location.description) %>

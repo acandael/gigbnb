@@ -10,4 +10,8 @@ module ApplicationHelper
   def has_locations?
     current_member.locations.any?
   end
+
+  def authorized_stripe?(member)
+    member.stripe_user_id != nil
+  end
 end
