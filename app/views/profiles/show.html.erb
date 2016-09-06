@@ -13,6 +13,7 @@
   <%= @profile.state %> <%= @profile.postal_code %></p>
   <p>Birthday: <%= @profile.birthday.strftime("%d %B %Y") %>
   <p>Credit Card Number: <%= @profile.cc_number %></p>
+  <p><%= link_to "Accept Stripe Payments", payout_account_member_path(current_member) %></p>
   Bio: <%= simple_format(@profile.bio) %>
   <%= button_to "Edit Profile", edit_member_profile_path(current_member, @profile.id), method: :get %>
   <% if is_host?(@profile) %>

@@ -11,7 +11,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       request.env["omniauth.auth"].info.stripe_publishable_key
     })
       # anything else you need to do in response..
-      redirect_to host_dashboard_locations_path,
+      redirect_to member_profile_path(@member, @member.profile),
       notice: "Congrats on connecting your Stripe account!"
     else
       redirect_to payout_account_member_path(current_member), alert:

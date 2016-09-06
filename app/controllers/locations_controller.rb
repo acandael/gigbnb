@@ -93,6 +93,18 @@ class LocationsController < ApplicationController
     end
   end
 
+  def publish
+    @location = Location.find(params[:id])
+    @location.published = true
+    if @location.save
+      flash[:notice] = "the location is published"
+      render :show
+    else
+      flash[:alert] = "the location could not be published"
+      render :show
+    end
+  end
+
   private
 
   def location_params

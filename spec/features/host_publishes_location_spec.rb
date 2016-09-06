@@ -13,7 +13,11 @@ feature "Host publishes location" do
     visit payout_account_member_path(member)
     click_link "Connect With Stripe"
     visit member_location_path(member, location) 
-    expect(page).to have_content "Publish"
+    expect(page).to have_content "Publish Location"
+    click_link "Publish"
+    location.reload
+    expect(location.published).to eq true
+    expect(page).to have_content "the location is published"
   end
 
   scenario "host who didn't authorize stripe cannot publish location" do

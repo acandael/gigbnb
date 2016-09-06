@@ -10,10 +10,12 @@
   <% end %>
   <% if is_host?(current_member.profile) %>
     <p><%= link_to "Add available dates for this location", calendar_location_path(@location) %></p>
-    <div id="calendar", style='width: 400px;'></div>
-    <% if authorized_stripe?(current_member) %>
-      <%= link_to "Publish" %>
+    <% if !@location.published %>
+      <% if authorized_stripe?(current_member) %>
+        <p><%= link_to "Publish Location", publish_location_path(@location) %></p>
+      <% end %>
     <% end %>
+    <div id="calendar", style='width: 400px;'></div>
   </div>
   <% end %>
   <%= simple_format(@location.description) %>
