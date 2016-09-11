@@ -42,6 +42,7 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'kaminari'
 gem 'omniauth-stripe-connect'
+gem 'stripe'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

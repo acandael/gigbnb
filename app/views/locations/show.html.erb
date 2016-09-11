@@ -1,19 +1,21 @@
 <section class="content">
   <h1><%= @location.title %></h1>
   <div class="reservation">
-  <%= simple_form_for [current_member, Reservation.new] do |f| %>
+    <%= simple_form_for [current_member, Reservation.new], url: new_member_reservation_path(current_member), html: { method: :get } do |f| %>
     <%= f.hidden_field :location_id, value: @location.id %>
     <%= f.hidden_field :member_id, value: current_member.id %>
     <%= f.input :start_date, default: Date.tomorrow %>
     <%= f.input :end_date, default: Date.today + 2.days %>
-    <%= f.submit 'Reserve this location' %>
+    <%= f.submit 'Pay Now' %>
   <% end %>
   <% if is_host?(current_member.profile) %>
     <p><%= link_to "Add available dates for this location", calendar_location_path(@location) %></p>
     <% if !@location.published %>
       <% if authorized_stripe?(current_member) %>
-        <p><%= link_to "Publish Location", publish_location_path(@location) %></p>
+        <p>Status: unpublished <%= link_to "Publish Location", publish_location_path(@location) %></p>
       <% end %>
+    <% else %>
+      <p>Status: Published</p>
     <% end %>
     <div id="calendar", style='width: 400px;'></div>
   </div>

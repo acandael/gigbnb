@@ -12,6 +12,7 @@ class ReservationsController < ApplicationController
   def create
     member = Member.find(params[:member_id])
     @reservation = Reservation.new(reservation_params)
+    @token = params[:stripe_token]
     if @reservation.save
       location = @reservation.location
       reservation_array =  (@reservation.start_date..@reservation.end_date - 1.day).to_a
