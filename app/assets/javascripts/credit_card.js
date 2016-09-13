@@ -11,7 +11,7 @@ return false;
 
 stripeResponseHandler = function (status, response) {
 var $form, token;
-$form = $("#new_reservation");
+$form = $("#credit_card_form");
 if (response.error) {
  $("#wait-message").hide();
  show_error(response.error.message);
