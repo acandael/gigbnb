@@ -6,7 +6,8 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @reservation = Reservation.new 
+    @reservation = Reservation.new(reservation_params)
+    @location = @reservation.location
   end
 
   def create

@@ -4,7 +4,11 @@
 form. First enable it in your web browser settings.</noscript>
 </div>
 
-<% simple_form_for @reservation do |f| %>
+<%= simple_form_for @reservation do |f| %>
+  <%= f.text_field :start_date, value: @reservation.start_date %>
+  <%= f.text_field :end_date, value: @reservation.end_date %>
+  <%= f.hidden_field :location_id, value: @location.id %>
+  <%= f.hidden_field :member_id, value: current_member.id %>
   <%= text_field_tag :card_number, "", class: "credit-card-number",
   "data-stripe" => "number", placeholder: "Credit Card Number",
   required: "required" %>
@@ -22,4 +26,5 @@ form. First enable it in your web browser settings.</noscript>
   "data-stripe" => "address-zip" %>
   <div id="wait-message" style="display:none"><h3
   class="wait-text">Please wait ...</h3></div>
+  <%= f.submit "Book Now" %>
 <% end %>

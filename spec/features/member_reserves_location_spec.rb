@@ -19,6 +19,7 @@ feature "reservations" do
      select "2020"
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
+     click_button "Book Now"
      expect(Reservation.last).to have_attributes(id_for_credit_card_charge: a_string_starting_with("ch"))
      expect(location.reservations.count).to eq 1
      reservation = Reservation.last
