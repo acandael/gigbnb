@@ -4,7 +4,7 @@
 form. First enable it in your web browser settings.</noscript>
 </div>
 
-<%= simple_form_for [current_member, @reservation] do |f| %>
+<%= simple_form_for [current_member, @reservation], html: { id: "credit_card_form" } do |f| %>
   <%= f.text_field :start_date, value: @reservation.start_date %>
   <%= f.text_field :end_date, value: @reservation.end_date %>
   <%= f.hidden_field :location_id, value: @location.id %>

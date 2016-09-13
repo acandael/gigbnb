@@ -1,8 +1,8 @@
 jQuery(function ($) {
  var show_error, stripeResponseHandler;
- $("#new_reservation").submit(function (event) {
+ $("#credit_card_form").submit(function (event) {
 var $form;
-$form = $(this);
+$form = $("#credit_card_form");
 $form.find("input[type=submit]").prop("disabled", true);
 $("#wait-message").show();
 Stripe.card.createToken($form, stripeResponseHandler);
