@@ -20,7 +20,7 @@ if (response.error) {
  token = response.id;
  $form.append($("<input type=\"hidden\" name=\"stripe_token\" />").val(token));
  $("[data-stripe=number]").remove();
- $("[data-stripe=cvv]").remove();
+ $("[data-stripe=cvc]").remove();
  $("[data-stripe=exp-year]").remove();
  $("[data-stripe=exp-month]").remove();
  $("[data-stripe=address-zip]").remove();
@@ -30,8 +30,7 @@ return false;
  };
 
 show_error = function (message) {
-$("#flash-messages").html('<div class="alert"><div
-id="flash_alert"><p class="error-color">' + message +
+$("#flash-messages").html('<div class="alert"><div id="flash_alert"><p class="error-color">' + message +
 '</p></div></div>');
 return false;
  };
