@@ -44,5 +44,65 @@ feature "reservations" do
       available_date = AvailableDate.last
       expect(available_date.reserved).to be false
     end
+
+    scenario "charge is declined", js: true do
+     FactoryGirl.create(:address_in_gent, location_id: location.id)
+     FactoryGirl.create(:profile, member_id: guest.id)
+      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
+     visit member_location_path(host, location)
+     click_button "Pay Now"
+     fill_in "card_number", with: "4000000000000002"
+     select "January"
+     select "2020"
+     fill_in "card_verification", with: "123"
+     fill_in "address_zip", with: "10001"
+     click_button "Book Now"
+     expect(page).to have_content "card_declined"
+    end
+
+    scenario "stripe returns error for invalid cvc-code", js: true do
+     FactoryGirl.create(:address_in_gent, location_id: location.id)
+     FactoryGirl.create(:profile, member_id: guest.id)
+      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
+     visit member_location_path(host, location)
+     click_button "Pay Now"
+     fill_in "card_number", with: "4242 4242 4242 4242"
+     select "January"
+     select "2020"
+     fill_in "card_verification", with: "99"
+     fill_in "address_zip", with: "10001"
+     click_button "Book Now"
+     expect(page).to have_content "card_declined"
+    end
+
+    scenario "card has expired", js: true do
+     FactoryGirl.create(:address_in_gent, location_id: location.id)
+     FactoryGirl.create(:profile, member_id: guest.id)
+      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
+     visit member_location_path(host, location)
+     click_button "Pay Now"
+     fill_in "card_number", with: "4000000000000069"
+     select "January"
+     select "2020"
+     fill_in "card_verification", with: "123"
+     fill_in "address_zip", with: "10001"
+     click_button "Book Now"
+     expect(page).to have_content "card_expired"
+    end
+
+    scenario "processing error", js: true do
+     FactoryGirl.create(:address_in_gent, location_id: location.id)
+     FactoryGirl.create(:profile, member_id: guest.id)
+      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
+     visit member_location_path(host, location)
+     click_button "Pay Now"
+     fill_in "card_number", with: "4000000000000119"
+     select "January"
+     select "2020"
+     fill_in "card_verification", with: "123"
+     fill_in "address_zip", with: "10001"
+     click_button "Book Now"
+     expect(page).to have_content "card_expired"
+    end
   end
 end
