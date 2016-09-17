@@ -15,7 +15,7 @@ form. First enable it in your web browser settings.</noscript>
   <%= select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map {|name,i| ["#{i+1} - #{name}", i+1] }), include_blank: false, "data-stripe" => "exp-month", class: "credit-card-month" %>
   <%= select_tag :exp_year, options_for_select((Date.current.year..(Date.current.year+10)).to_a), include_blank: false, "data-stripe" => "exp-year", class: "credit-card-year" %>
   <%= text_field_tag :card_verification, "", class: "credit-card-cvc", "data-stripe" => "cvc", placeholder: "cvc" %>
-  <%= text_field_tag :address_zip, "", class: "credit-card-zip", "data-stripe" => "address-zip" %>
+  <%= text_field_tag :address_zip, "", class: "credit-card-zip", "data-stripe" => "address-zip", placeholder: "address zip" %>
   <div id="wait-message" style="display:none"><h3
   class="wait-text">Please wait ...</h3></div>
   <%= f.button :submit, "Book Now" %>

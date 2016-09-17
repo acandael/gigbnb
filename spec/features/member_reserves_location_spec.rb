@@ -20,6 +20,7 @@ feature "reservations" do
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
+     sleep 5
      expect(Reservation.last).to have_attributes(id_for_credit_card_charge: a_string_starting_with("ch"))
      expect(location.reservations.count).to eq 1
      reservation = Reservation.last
@@ -57,6 +58,7 @@ feature "reservations" do
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
+     sleep 5
      expect(page).to have_content "The card was declined."
     end
 
@@ -72,6 +74,7 @@ feature "reservations" do
      fill_in "card_verification", with: "99"
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
+     sleep 5
      expect(page).to have_content "The card's security code is incorrect."
     end
 
@@ -86,7 +89,10 @@ feature "reservations" do
      select "2020"
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
+     save_and_open_page
      click_button "Book Now"
+     sleep 5
+     save_and_open_page
      expect(page).to have_content "The card has expired."
     end
 
@@ -102,6 +108,7 @@ feature "reservations" do
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
+     sleep 5
      expect(page).to have_content "An error occurred while processing the card."
     end
   end
