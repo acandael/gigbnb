@@ -57,7 +57,7 @@ feature "reservations" do
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
-     expect(page).to have_content "card_declined"
+     expect(page).to have_content "The card was declined."
     end
 
     scenario "stripe returns error for invalid cvc-code", js: true do
@@ -72,7 +72,7 @@ feature "reservations" do
      fill_in "card_verification", with: "99"
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
-     expect(page).to have_content "card_declined"
+     expect(page).to have_content "The card's security code is incorrect."
     end
 
     scenario "card has expired", js: true do
@@ -87,7 +87,7 @@ feature "reservations" do
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
-     expect(page).to have_content "card_expired"
+     expect(page).to have_content "The card has expired."
     end
 
     scenario "processing error", js: true do
@@ -102,7 +102,7 @@ feature "reservations" do
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
-     expect(page).to have_content "card_expired"
+     expect(page).to have_content "An error occurred while processing the card."
     end
   end
 end
