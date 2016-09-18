@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "reservations" do
   let(:guest) { FactoryGirl.create(:member) }
-  let(:host) { FactoryGirl.create(:member) }
+  let(:host) { FactoryGirl.create(:member, stripe_user_id: "acct_2N9rwPho2QXMroqhEhGh") }
   let(:location) { FactoryGirl.create(:location, member_id: host.id) }
   before do
     login_as(guest, :scope => :member)
@@ -92,7 +92,6 @@ feature "reservations" do
      save_and_open_page
      click_button "Book Now"
      sleep 5
-     save_and_open_page
      expect(page).to have_content "The card has expired."
     end
 

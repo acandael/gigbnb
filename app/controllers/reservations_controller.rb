@@ -11,8 +11,9 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    member = Member.find(params[:member_id])
+    # member = Member.find(params[:member_id])
     @reservation = Reservation.new(reservation_params)
+    @location = @reservation.location
     @token = params[:stripe_token]
 
     if @reservation.valid?

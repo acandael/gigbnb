@@ -12,7 +12,7 @@ class CreditCardService
       Stripe::Charge.create({
       amount: @amount, #required
       source: @source, #required
-      currency: "usd", #required
+      currency: "eur", #required
       destination: @destination, #required
       description: @description,#optional
       statement_descriptor: @statement_descriptor,#optional
