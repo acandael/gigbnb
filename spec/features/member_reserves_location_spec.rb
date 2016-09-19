@@ -14,7 +14,7 @@ feature "reservations" do
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
      visit member_location_path(host, location)
      click_button "Pay Now"
-     fill_in "card_number", with: "4242 4242 4242 4242"
+     fill_in "card_number", with: "4000000560000004"
      select "January"
      select "2020"
      fill_in "card_verification", with: "123"
@@ -33,7 +33,7 @@ feature "reservations" do
   end
 
   context "with invalid data" do
-    scenario "does not reserve a location that's already booked" do
+    scenario "does not reserve a location that's already booked", js: true do
       FactoryGirl.create(:profile, member_id: guest.id)
       location= FactoryGirl.create(:location, member_id: guest.id)
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
@@ -75,7 +75,7 @@ feature "reservations" do
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
      sleep 5
-     expect(page).to have_content "The card's security code is incorrect."
+     expect(page).to have_content "Your card's security code is invalid."
     end
 
     scenario "card has expired", js: true do
@@ -89,7 +89,6 @@ feature "reservations" do
      select "2020"
      fill_in "card_verification", with: "123"
      fill_in "address_zip", with: "10001"
-     save_and_open_page
      click_button "Book Now"
      sleep 5
      expect(page).to have_content "The card has expired."
