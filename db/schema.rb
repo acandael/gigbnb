@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918113254) do
+ActiveRecord::Schema.define(version: 20160925192140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,10 +95,10 @@ ActiveRecord::Schema.define(version: 20160918113254) do
     t.integer  "postal_code"
     t.string   "state"
     t.date     "birthday"
-    t.integer  "cc_number"
+    t.integer  "cc_number",                limit: 8
     t.integer  "member_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "profile_pic_file_name"
     t.string   "profile_pic_content_type"
     t.integer  "profile_pic_file_size"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20160918113254) do
     t.date    "end_date"
     t.integer "location_id"
     t.integer "member_id"
-    t.integer "id_for_credit_card_charge"
+    t.string  "id_for_credit_card_charge"
   end
 
   add_index "reservations", ["location_id"], name: "index_reservations_on_location_id", using: :btree

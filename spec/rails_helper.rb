@@ -123,10 +123,12 @@ OmniAuth::AuthHash.new({
 
 Capybara::Webkit.configure do |config|
   config.allow_url("csi.gstatic.com")
-  config.block_unknown_urls
   config.allow_url("http://csi.gstatic.com/csi?v=2&s=mapsapi3&v3v=24.13&action=map2&firstmap=true&hdpi=false&mob=false&staticmap=true&size=800x400&hadviewport=true&rt=visreq.63")
+  config.allow_url("https://js.stripe.com/v2/")
   config.allow_url("maps.googleapis.com")
   config.allow_url("api.stripe.com")
   config.allow_url("maps.google.com")
+  config.allow_url("maps.gstatic.com")
+  config.allow_url("fonts.googleapis.com")
 end
 

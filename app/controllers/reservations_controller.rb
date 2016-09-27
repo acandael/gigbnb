@@ -34,9 +34,9 @@ class ReservationsController < ApplicationController
         @reservation.save
         reservation_array = (@reservation.start_date..@reservation.end_date -
         1.day).to_a
-        AvailableDate.where(location_id: @location.id).where(date_available:
+        AvailableDate.where(location_id: @location.id).where(available_date:
         reservation_array).update_all(reserved: true)
-        format.html { redirect_to confirmation_reservation_path(@reservation),
+        format.html { redirect_to reservation_confirmation_path(@reservation),
         notice: "Reservation successfully created." }
       else
         format.html {redirect_to new_reservation_path(

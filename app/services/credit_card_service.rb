@@ -15,7 +15,7 @@ class CreditCardService
       currency: "eur", #required
       destination: @destination, #required
       description: @description,#optional
-      statement_descriptor: @statement_descriptor,#optional
+      statement_descriptor: @statement_descriptor, #optional
       application_fee: @application_fee #optional
     })
   end
@@ -33,7 +33,7 @@ class CreditCardService
 
   def set_amount
     number_of_nights = (@reservation.start_date..@reservation.end_date - 1.day).count
-    @amount = (number_of_nights * @location.price) * 100
+    @amount = ((number_of_nights * @location.price) * 100).to_i
   end
 
   def set_application_fee(amount)
