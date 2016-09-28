@@ -91,7 +91,6 @@ feature "reservations" do
      fill_in "address_zip", with: "10001"
      click_button "Book Now"
      sleep 5
-     save_and_open_page
      expect(page).to have_content "An error occurred while processing your card."
     end
   end

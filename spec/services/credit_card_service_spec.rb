@@ -3,8 +3,8 @@ require 'stripe_mock'
 
 describe CreditCardService do
 
-  let(:location) { FactoryGirl.create(:location_with_available_dates) }
   let(:member) { FactoryGirl.create(:member) }
+  let(:location) { FactoryGirl.create(:location_with_available_dates, member_id: member.id) }
   let(:stripe_helper) { StripeMock.create_test_helper }
 
   before do

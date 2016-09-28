@@ -39,6 +39,9 @@ class ReservationsController < ApplicationController
         format.html { redirect_to reservation_confirmation_path(@reservation),
         notice: "Reservation successfully created." }
       else
+        if Rails.env == "test"
+          sleep 2
+        end
         format.html {redirect_to new_reservation_path(
         reservation: {start_date: @reservation.start_date,
         end_date: @reservation.end_date, location_id: @location.id})}

@@ -9,7 +9,7 @@ class CreditCardService
 
   def charge_customer
     set_charge_attributes
-      Stripe::Charge.create({
+    Stripe::Charge.create({
       amount: @amount, #required
       source: @source, #required
       currency: "eur", #required
