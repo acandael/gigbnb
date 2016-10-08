@@ -3,6 +3,8 @@ class Reservation < ActiveRecord::Base
   belongs_to :member
   validate :dates_are_available, :dates_are_not_in_past, :no_available_date_set
 
+  scope :upcoming, ->(member_id){ where(start_date > Date.current).where(member_id: member_id) } if member_id.present?
+
   def dates_are_available
     start_date_overlap = location.reservations.where(start_date:
     start_date..end_date - 1.day)

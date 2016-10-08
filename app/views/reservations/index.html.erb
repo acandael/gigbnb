@@ -1,6 +1,10 @@
 <section class="content">
   <h2>My Reservations</h2>
   <div id="calendar", style='width: 600px;'></div>
+
+  <% @reservations.each do |reservation| %>
+    <%= reservation.start_date.strftime("%m/%d/%Y")  %>
+  <% end %>
 </section>
 <script type="text/javascript">
  $('#calendar').fullCalendar({
