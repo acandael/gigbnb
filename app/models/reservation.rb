@@ -2,8 +2,8 @@ class Reservation < ActiveRecord::Base
   belongs_to :location
   belongs_to :member
   validate :dates_are_available, :dates_are_not_in_past, :no_available_date_set
-
-  scope :upcoming, ->(member_id){ where(start_date > Date.current).where(member_id: member_id) } if member_id.present?
+  validate :dates_are_available, on: :create
+  scope :upcoming, ->(member_id){ where("start_date > ?", Date.today).where(member_id: member_id) if member_id.present? }
 
   def dates_are_available
     start_date_overlap = location.reservations.where(start_date:
@@ -28,5 +28,13 @@ class Reservation < ActiveRecord::Base
     if available_dates.count == 0
       errors[:base] << "Host has not set an available date for this location"
     end
+  end
+
+  def update_after_refund(id_for_refund)
+    update(id_for_refund: id_for_refund)
+    reservation_array = (start_date..end_date).to_a
+    available_dates = AvailableDate.where(location_id:
+    location.id).where(available_date: reservation_array)
+    available_dates.update_all(reserved: false)
   end
 end

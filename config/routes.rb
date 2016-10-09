@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
   resources :reservations do
     get :confirmation
+    get :cancel, on: :member
   end
 end
