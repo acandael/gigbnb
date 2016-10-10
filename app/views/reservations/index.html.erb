@@ -4,7 +4,7 @@
 
   <% @reservations.each do |reservation| %>
     <%= reservation.start_date.strftime("%m/%d/%Y")  %>
-    <% if reservation.id_for_refund != nil %>
+    <% if reservation.id_for_refund == nil %>
     <p><%= link_to "Cancel Reservation",
   cancel_reservation_path(reservation), data: { confirm: "Are you sure?"} %></p>
     <% end %>

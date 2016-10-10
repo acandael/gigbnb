@@ -4,6 +4,7 @@ class Reservation < ActiveRecord::Base
   validate :dates_are_available, :dates_are_not_in_past, :no_available_date_set
   validate :dates_are_available, on: :create
   scope :upcoming, ->(member_id){ where("start_date > ?", Date.today).where(member_id: member_id) if member_id.present? }
+  scope :not_cancelled, ->{ where("id_for_refund == nil") }
 
   def dates_are_available
     start_date_overlap = location.reservations.where(start_date:

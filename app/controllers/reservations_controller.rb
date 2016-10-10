@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
 
   def index
-    @member = Member.find(params[:member_id])
+    @member = current_member
     @reservations = Reservation.upcoming(@member.id)
   end
 

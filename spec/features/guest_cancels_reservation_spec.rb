@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 feature "Guest cancels reservation" do
+  let(:host) { FactoryGirl.create(:member, stripe_user_id: "acct_18wDXuEi4pi0JP9s", email: "marcel.candaele@skynet.be") } 
+  let(:location) { FactoryGirl.create(:location_with_available_dates, member_id: host.id) }
+
   let(:member) { FactoryGirl.create(:member) }
-  let(:location) { FactoryGirl.create(:location_with_available_dates) }
   before do
     login_as(member, scope: :member)
   end
@@ -27,7 +29,6 @@ feature "Guest cancels reservation" do
     fill_in "address_zip", with: "10001"
     click_button "Book Now"
     sleep 5
-    save_and_open_page
     expect(Reservation.count).to eq 1
   end
 end
