@@ -130,5 +130,6 @@ Capybara::Webkit.configure do |config|
   config.allow_url("maps.google.com")
   config.allow_url("maps.gstatic.com")
   config.allow_url("fonts.googleapis.com")
+  config.allow_url("q.stripe.com")
 end
 
