@@ -49,3 +49,23 @@ describe "#update_after_refund" do
   end
 end
 
+
+describe "not_cancelled scope" do
+  it "returns reservations that have not been cancelled" do
+    location = FactoryGirl.create(:location_with_available_dates)
+    reservation = Reservation.create(
+      start_date: Date.tomorrow,
+      end_date: Date.today + 2.days,
+      location_id: location.id )
+    reservation2 = Reservation.create(
+      start_date: Date.today + 2.days,
+      end_date: Date.today + 3.days,
+      location_id: location.id,
+      id_for_refund: "re_123123123123" )
+
+    reservations = Reservation.not_cancelled
+    expect(reservations).to include(reservation)
+    expect(reservations).to_not include(reservation2)
+  end
+end
+

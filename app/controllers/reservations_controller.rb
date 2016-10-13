@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
 
   def index
     @member = current_member
-    @reservations = Reservation.upcoming(@member.id)
+    @reservations = Reservation.not_cancelled.upcoming(@member.id)
   end
 
   def new
