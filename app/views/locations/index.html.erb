@@ -1,8 +1,6 @@
 <section class="content">
 <h1>Locations</h1>
-<% if is_host?(current_member.profile) %>
   <%= link_to "Create Location", new_member_location_path(current_member) %>
-<% end %>
 <div class="locations">
   <% @locations.each do |location| %>
     <div class="location">
