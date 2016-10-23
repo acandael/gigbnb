@@ -18,5 +18,14 @@ feature "member views profile" do
     expect(page).to have_content profile.birthday.strftime("%d %B %Y")
     expect(page).to have_content profile.cc_number
     expect(page).to have_css("img[src*='profile_pic']")
+    expect(page).not_to have_link "Accept Stripe Payments"
+    expect(page).not_to have_link "Create Location"
+  end
+
+  scenario "host sees links for hosts" do
+    profile.is_host = true
+    profile.save
+    expect(page).not_to have_link "Accept Stripe Payments"
+    expect(page).not_to have_link "Create Location"
   end
 end
