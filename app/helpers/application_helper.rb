@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def is_host?(profile)
-    profile.is_host != nil && profile.is_host
+    profile.is_host
   end
 
   def has_locations?

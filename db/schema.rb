@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008163119) do
+ActiveRecord::Schema.define(version: 20161023113648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20161008163119) do
     t.integer  "profile_pic_file_size"
     t.datetime "profile_pic_updated_at"
     t.text     "bio"
-    t.boolean  "is_host"
+    t.boolean  "is_host",                            null: false
   end
 
   add_index "profiles", ["member_id"], name: "index_profiles_on_member_id", using: :btree

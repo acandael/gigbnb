@@ -10,5 +10,6 @@ FactoryGirl.define do
     cc_number 123456
     bio Faker::Lorem.paragraph
     profile_pic { File.new("#{Rails.root}/spec/fixtures/files/profile_pic.jpg") }
+    is_host false
   end
 end

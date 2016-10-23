@@ -12,6 +12,7 @@ feature "Visitor searches for locations" do
 
 
   scenario "by visiting index page with no search and clicks to view more" do
+    FactoryGirl.create(:profile, member_id: member.id)
     visit locations_path
     expect(page).to have_content @first_location.title
     expect(page).not_to have_content @last_location.title
@@ -21,6 +22,7 @@ feature "Visitor searches for locations" do
   end
 
   scenario "by filling out search form and clicks to view more" do
+    FactoryGirl.create(:profile, member_id: member.id)
     visit root_path
     expect(page).to have_content "Search for a location"
     fill_in "start_date", with: Date.tomorrow

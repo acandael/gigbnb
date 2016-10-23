@@ -36,7 +36,7 @@ describe ProfilePolicy do
 
     permissions :edit?, :update?, :destroy? do
       it "grants access if profile belongs to member" do
-        expect(subject).to permit(member, Profile.create!(member_id: member.id, first_name: "Joe", last_name: "Doe", postal_code: 9000, cc_number: 12345))
+        expect(subject).to permit(member, Profile.create!(member_id: member.id, first_name: "Joe", last_name: "Doe", postal_code: 9000, cc_number: 12345, is_host: false))
       end
     end
   end

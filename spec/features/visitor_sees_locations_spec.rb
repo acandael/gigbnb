@@ -13,6 +13,7 @@ feature "Visitor visits locations index page" do
   visit root_path
   click_link "See all Locations"
   expect(page).to have_content location.title
+  expect(page).not_to have_link "Create Location"
   click_link location.title
   expect(page).to have_content location.address.street
   end
