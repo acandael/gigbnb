@@ -16,6 +16,8 @@ feature "Visitor visits locations index page" do
   expect(page).not_to have_link "Create Location"
   click_link location.title
   expect(page).to have_content location.address.street
+  expect(page).not_to have_link "Edit"
+  expect(page).not_to have_link "Delete"
   end
 
 end
