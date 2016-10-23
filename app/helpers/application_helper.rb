@@ -3,8 +3,8 @@ module ApplicationHelper
     current_member.profile != nil && !current_member.profile.new_record?
   end
 
-  def is_host?(profile)
-    profile.is_host
+  def is_host?
+    member_signed_in? && current_member.profile && current_member.profile.is_host
   end
 
   def has_locations?

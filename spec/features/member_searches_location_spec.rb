@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature "search location" do
   let(:member) { FactoryGirl.create(:member) }
-  let(:profile) { FactoryGirl.create(:profile, member_id: member.id) }
   before do
     login_as(member, :scope => :member)
   end
@@ -15,6 +14,7 @@ feature "search location" do
   end
 
   scenario "member searches for location with available date" do
+  FactoryGirl.create(:profile, member_id: member.id)
   location_in_gent_no_dates = FactoryGirl.create(:location)
   location_in_gent_with_dates = FactoryGirl.create(:location_in_gent_with_available_dates)
   location_in_de_panne_with_dates = FactoryGirl.create(:location_in_de_panne_with_available_dates)

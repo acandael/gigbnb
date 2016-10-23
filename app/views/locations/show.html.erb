@@ -8,7 +8,7 @@
     <%= f.input :end_date, default: Date.today + 2.days %>
     <%= f.submit 'Pay Now' %>
   <% end %>
-  <% if is_host?(current_member.profile) %>
+  <% if is_host? %>
     <p><%= link_to "Add available dates for this location", calendar_location_path(@location) %></p>
     <% if !@location.published %>
       <% if authorized_stripe?(current_member) %>

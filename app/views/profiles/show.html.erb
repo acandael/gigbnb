@@ -16,7 +16,7 @@
   <p><%= link_to "Accept Stripe Payments", payout_account_member_path(current_member) %></p>
   Bio: <%= simple_format(@profile.bio) %>
   <%= button_to "Edit Profile", edit_member_profile_path(current_member, @profile.id), method: :get %>
-  <% if is_host?(@profile) %>
+  <% if is_host? %>
     <%= render 'locations', profile: @profile %>
     <%= button_to "Create Location", new_member_location_path(current_member), method: :get %>
   <% end %>
