@@ -11,20 +11,20 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    # member = Member.find(params[:member_id])
+    guest = Member.find(params[:member_id])
     @reservation = Reservation.new(reservation_params)
     @location = @reservation.location
     @token = params[:stripe_token]
-
     if @reservation.valid?
       begin
-      @customer_charge = charge_customer(@token, @location, @reservation)
-      @reservation.id_for_credit_card_charge = @customer_charge.id
+        @customer_charge = charge_customer(@token, @location, @reservation)
+        @reservation.id_for_credit_card_charge = @customer_charge.id
       rescue Stripe::CardError => e
-      body = e.json_body
-      message = body[:error][:message]
-      flash[:alert] = message
+        body = e.json_body
+        message = body[:error][:message]
+        flash[:alert] = message
       end
+      ReservationConfirmationMailer.send_customer_reservation_confirmation(guest)
     else
       flash[:alert] = "Some of the dates of your reservation are not available.
       Please try different dates."

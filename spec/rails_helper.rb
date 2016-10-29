@@ -9,6 +9,7 @@ require 'capybara/rspec'
 require 'simple_bdd'
 require 'shoulda/matchers'
 require 'pundit/rspec'
+require 'capybara/email/rspec'
 include Warden::Test::Helpers
 Warden.test_mode!
 # Add additional requires below this line. Rails is not loaded until this point!

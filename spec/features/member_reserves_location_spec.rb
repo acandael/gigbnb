@@ -7,6 +7,11 @@ feature "reservations" do
   before do
     login_as(guest, :scope => :member)
   end
+
+  after(:each) do
+    ActionMailer::Base.deliveries.clear
+  end
+
   context "with valid data" do
     scenario "reserves a location", js: true do
      FactoryGirl.create(:address_in_gent, location_id: location.id)
@@ -26,6 +31,22 @@ feature "reservations" do
      expect(current_path). to eq reservation_confirmation_path(Reservation.last)
      available_date = AvailableDate.last
      expect(available_date.reserved).to be true
+    end
+
+    scenario "guest receives a confirmation email" do
+     FactoryGirl.create(:address_in_gent, location_id: location.id)
+     FactoryGirl.create(:profile, member_id: guest.id)
+      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
+     visit member_location_path(host, location)
+     click_button "Pay Now"
+     fill_in "card_number", with: "4242424242424242"
+     select "January"
+     select "2020"
+     fill_in "card_verification", with: "123"
+     fill_in "address_zip", with: "9000"
+     click_button "Book Now"
+     sleep 5
+     expect(ActionMailer::Base.deliveries.count).to eq 1
     end
   end
 
