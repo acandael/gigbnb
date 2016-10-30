@@ -6,11 +6,8 @@ RSpec.describe ReservationConfirmationMailer, type: :mailer do
     let(:host) { FactoryGirl.create(:member, email: "info@anthonycandaele.com") }
     let(:location°) { FactoryGirl.create(:location, member_id: host.id) }
     let(:reservation) { FactoryGirl.create(:reservation, member_id: guest.id, location_id: location.id) }
-    let(:mail) { ReservationConfirmationMailer.send_customer_reservation_confirmation(guest) }
+    let(:mail) { ReservationConfirmationMailer.send_customer_reservation_confirmation(reservation) }
 
-    before do
-      login_as(guest, :scope => :member)
-    end
 
     it "renders the headers" do
       expect(mail.subject).to eq("reservation confirmation")
@@ -28,11 +25,7 @@ RSpec.describe ReservationConfirmationMailer, type: :mailer do
     let(:host) { FactoryGirl.create(:member) }
     let(:location) { FactoryGirl.create(:location, member_id: host.id) }
     let(:reservation) { FactoryGirl.create(:reservation, member_id: guest.id, location_id: location.id) }
-    let(:mail) { ReservationConfirmationMailer.send_host_reservation_confirmation(location, guest) }
-
-    before do
-      login_as(guest, :scope => :member)
-    end
+    let(:mail) { ReservationConfirmationMailer.send_host_reservation_confirmation(reservation) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("A customer reserved a location")

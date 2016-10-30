@@ -16,7 +16,7 @@ feature "reservations" do
     scenario "reserves a location", js: true do
      FactoryGirl.create(:address_in_gent, location_id: location.id)
      FactoryGirl.create(:profile, member_id: guest.id)
-      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
+     AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
      visit member_location_path(host, location)
      click_button "Pay Now"
      fill_in "card_number", with: "4242424242424242"
@@ -33,10 +33,10 @@ feature "reservations" do
      expect(available_date.reserved).to be true
     end
 
-    scenario "guest receives a confirmation email" do
+    scenario "guest receives a confirmation email", js:true  do
      FactoryGirl.create(:address_in_gent, location_id: location.id)
      FactoryGirl.create(:profile, member_id: guest.id)
-      AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
+     AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)
      visit member_location_path(host, location)
      click_button "Pay Now"
      fill_in "card_number", with: "4242424242424242"
@@ -46,6 +46,7 @@ feature "reservations" do
      fill_in "address_zip", with: "9000"
      click_button "Book Now"
      sleep 5
+     expect(page).to have_content "You reserved location #{location.title}"
      expect(ActionMailer::Base.deliveries.count).to eq 1
     end
   end
