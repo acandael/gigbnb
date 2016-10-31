@@ -4,7 +4,7 @@ class ReservationConfirmationMailer < ApplicationMailer
     @body = "You have reserved the location below."
     @guest = reservation.member
 
-    mail(to: guest.email, subject: "reservation confirmation")
+    mail(to: @guest.email, subject: "reservation confirmation")
   end
 
   def send_host_reservation_confirmation(reservation)
