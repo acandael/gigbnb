@@ -24,6 +24,7 @@ class ReservationsController < ApplicationController
         flash[:alert] = message
       end
       ReservationConfirmationMailer.send_customer_reservation_confirmation(@reservation).deliver_now
+      ReservationConfirmationMailer.send_host_reservation_confirmation(@reservation).deliver_now
     else
       flash[:alert] = "Some of the dates of your reservation are not available.
       Please try different dates."

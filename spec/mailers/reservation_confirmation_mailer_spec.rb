@@ -4,7 +4,7 @@ RSpec.describe ReservationConfirmationMailer, type: :mailer do
   describe "send_customer_reservation_confirmation" do
     let(:guest) { FactoryGirl.create(:member) } 
     let(:host) { FactoryGirl.create(:member, email: "info@anthonycandaele.com") }
-    let(:location) { FactoryGirl.create(:location, member_id: host.id) }
+    let(:location) { FactoryGirl.create(:location, member_id: host.id, published: true) }
 
 
     it "renders the headers" do
