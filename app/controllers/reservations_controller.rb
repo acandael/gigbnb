@@ -11,7 +11,6 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    guest = Member.find(params[:member_id])
     @reservation = Reservation.new(reservation_params)
     @location = @reservation.location
     @token = params[:stripe_token]
@@ -24,7 +23,7 @@ class ReservationsController < ApplicationController
         message = body[:error][:message]
         flash[:alert] = message
       end
-      ReservationConfirmationMailer.send_customer_reservation_confirmation(guest).deliver_now
+      ReservationConfirmationMailer.send_customer_reservation_confirmation(@reservation).deliver_now
     else
       flash[:alert] = "Some of the dates of your reservation are not available.
       Please try different dates."
