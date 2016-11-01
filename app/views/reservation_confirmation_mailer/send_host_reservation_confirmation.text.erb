@@ -1,3 +1,6 @@
-ReservationConfirmationMailer#send_host_reservation_confirmation
+A guest reserved your location
 
-<%= @greeting %>, find me in app/views/reservation_confirmation_mailer/send_host_reservation_confirmation.text.erb
+guest: <%= @guest.profile.first_name %> <%= @guest.profile.last_name %>
+
+location: <%= @location.title %>
+<%= @location.address.street %>

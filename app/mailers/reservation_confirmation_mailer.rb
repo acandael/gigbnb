@@ -4,8 +4,8 @@ class ReservationConfirmationMailer < ApplicationMailer
     @body = "You have reserved the location below."
     @location = reservation.location
     @host = @location.member
+    @host = @location.member
     @guest = reservation.member
-
     mail(to: @guest.email, subject: "reservation confirmation")
   end
 
