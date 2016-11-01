@@ -53,7 +53,6 @@ feature "location management" do
       click_link "Edit"
       fill_in "Title", with: "new title"
       click_button "Update Location"
-      save_and_open_page
       expect(page).to have_content("Successfully updated location.")
       expect(current_path).to eq member_location_path(member, location)
       expect(page).to have_content "new title"

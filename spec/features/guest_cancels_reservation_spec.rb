@@ -5,6 +5,7 @@ feature "Guest cancels reservation" do
   let(:location) { FactoryGirl.create(:location_with_available_dates, member_id: host.id) }
 
   let(:member) { FactoryGirl.create(:member) }
+  let(:profile) { FactoryGirl.create(:profile, member_id: member.id) }
   before do
     login_as(member, scope: :member)
   end

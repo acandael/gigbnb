@@ -5,6 +5,9 @@ class ReservationConfirmationMailer < ApplicationMailer
     @location = reservation.location
     @host = @location.member
     @guest = reservation.member
+    profile = @host.profile
+    @first_name = profile.first_name
+    @last_name = profile.last_name
     mail(to: @guest.email, subject: "reservation confirmation")
   end
 
@@ -13,6 +16,9 @@ class ReservationConfirmationMailer < ApplicationMailer
     @location = reservation.location
     @host = @location.member
     @guest = reservation.member
+    profile = @guest.profile
+    @first_name = profile.first_name
+    @last_name = profile.last_name
 
     mail(to: @host.email, from: @guest.email, subject: "A customer reserved a location")
   end

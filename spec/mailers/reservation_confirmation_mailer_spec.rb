@@ -5,6 +5,8 @@ RSpec.describe ReservationConfirmationMailer, type: :mailer do
     let(:guest) { FactoryGirl.create(:member) } 
     let(:host) { FactoryGirl.create(:member, email: "info@anthonycandaele.com") }
     let(:location) { FactoryGirl.create(:location, member_id: host.id, published: true) }
+    let!(:guest_profile) { FactoryGirl.create(:profile, member_id: guest.id) }
+    let!(:host_profile) { FactoryGirl.create(:profile, member_id: host.id) }
 
 
     it "renders the headers" do
@@ -30,6 +32,8 @@ RSpec.describe ReservationConfirmationMailer, type: :mailer do
     let(:guest) { FactoryGirl.create(:member) } 
     let(:host) { FactoryGirl.create(:member) }
     let(:location) { FactoryGirl.create(:location, member_id: host.id) }
+    let!(:guest_profile) { FactoryGirl.create(:profile, member_id: guest.id) }
+    let!(:host_profile) { FactoryGirl.create(:profile, member_id: host.id) }
 
     it "renders the headers" do
       AvailableDate.create(location_id: location.id, available_date: Date.tomorrow, reserved: false)

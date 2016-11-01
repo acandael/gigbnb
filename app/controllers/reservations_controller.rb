@@ -23,8 +23,6 @@ class ReservationsController < ApplicationController
         message = body[:error][:message]
         flash[:alert] = message
       end
-      ReservationConfirmationMailer.send_customer_reservation_confirmation(@reservation).deliver_now
-      ReservationConfirmationMailer.send_host_reservation_confirmation(@reservation).deliver_now
     else
       flash[:alert] = "Some of the dates of your reservation are not available.
       Please try different dates."
@@ -34,6 +32,8 @@ class ReservationsController < ApplicationController
         @reservation.save
         reservation_array = (@reservation.start_date..@reservation.end_date -
         1.day).to_a
+        ReservationConfirmationMailer.send_customer_reservation_confirmation(@reservation).deliver_now
+        ReservationConfirmationMailer.send_host_reservation_confirmation(@reservation).deliver_now
         AvailableDate.where(location_id: @location.id).where(available_date:
         reservation_array).update_all(reserved: true)
         format.html { redirect_to reservation_confirmation_path(@reservation),
