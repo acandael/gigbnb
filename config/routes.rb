@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   end
 
   mount StripeEvent::Engine => '/stripe-web-hooks'
+
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 end
