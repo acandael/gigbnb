@@ -6,6 +6,7 @@ feature "reservations" do
   let(:location) { FactoryGirl.create(:location, member_id: host.id) }
   before do
     login_as(guest, :scope => :member)
+    ActiveJob::Base.queue_adapter.enqueued_jobs.clear
   end
 
   after(:each) do
@@ -32,6 +33,7 @@ feature "reservations" do
      expect(current_path). to eq reservation_confirmation_path(Reservation.last)
      available_date = AvailableDate.last
      expect(available_date.reserved).to be true
+     expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
     end
 
     scenario "guest receives a confirmation email", js:true  do

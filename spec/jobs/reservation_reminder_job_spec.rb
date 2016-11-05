@@ -10,7 +10,6 @@ RSpec.describe ReservationReminderJob, type: :job do
     let!(:host_profile) { FactoryGirl.create(:profile, member_id: host.id) }
 
     before do
-      ActiveJob::Base.queue_adapter = :test
       ActionMailer::Base.deliveries.clear
       @reservation = Reservation.create(
       location_id: location.id,

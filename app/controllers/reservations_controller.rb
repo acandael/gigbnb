@@ -38,6 +38,9 @@ class ReservationsController < ApplicationController
         reservation_array).update_all(reserved: true)
         format.html { redirect_to reservation_confirmation_path(@reservation),
         notice: "Reservation successfully created." }
+
+        day_before = @reservation.start_date - 1.day
+        ReservationReminderJob.set(wait_until: day_before.noon).perform_later(@reservation)
       else
         if Rails.env == "test"
           sleep 2
