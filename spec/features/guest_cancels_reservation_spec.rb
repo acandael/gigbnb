@@ -6,8 +6,14 @@ feature "Guest cancels reservation" do
 
   let(:member) { FactoryGirl.create(:member) }
   let(:profile) { FactoryGirl.create(:profile, member_id: member.id) }
+
   before do
     login_as(member, scope: :member)
+    ActiveJob::Base.queue_adapter.enqueued_jobs.clear
+  end
+
+  after(:each) do
+    ActionMailer::Base.deliveries.clear
   end
 
   scenario "by visiting index of upcoming reservations and clicking cancel", js: true do
@@ -19,6 +25,7 @@ feature "Guest cancels reservation" do
     expect(page).to have_content "Your reservation was successfully cancelled."
     reservation = Reservation.last
     expect(reservation).to have_attributes(id_for_refund: a_string_starting_with("re"))
+    expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
   end
 
   def create_reservation

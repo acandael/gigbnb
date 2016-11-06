@@ -71,6 +71,7 @@ class ReservationsController < ApplicationController
       @reservation.update_after_refund(@id_for_refund)
       redirect_to reservations_path, notice: "Your reservation was successfully
       cancelled."
+      ReservationCancellationJob.perform_later(@reservation)
     else
       redirect_to reservations_path
     end
