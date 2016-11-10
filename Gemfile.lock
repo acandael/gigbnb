@@ -89,6 +89,7 @@ GEM
       countries (~> 1.2.0)
       sort_alphabetical (~> 1.0)
     currencies (0.4.2)
+    daemons (1.2.4)
     dante (0.2.0)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
@@ -355,6 +356,7 @@ DEPENDENCIES
   capybara-webkit
   coffee-rails (~> 4.1.0)
   country_select
+  daemons
   database_cleaner
   delayed_job_active_record
   delayed_job_web
