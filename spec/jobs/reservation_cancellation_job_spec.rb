@@ -5,6 +5,7 @@ RSpec.describe ReservationCancellationJob, type: :job do
     let(:location) { FactoryGirl.create(:location_with_available_dates, member_id: host.id) }
     let(:member) { FactoryGirl.create(:member) }
     let!(:host_profile) { FactoryGirl.create(:profile, member_id: host.id) }
+    let!(:guest_profile) { FactoryGirl.create(:profile, member_id: member.id) }
 
     before do
       ActionMailer::Base.deliveries.clear
