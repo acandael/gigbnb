@@ -9,4 +9,4 @@
 <p>Reservation<br>
 start_date: <%= @reservation.start_date.strftime('%d  %B %Y')%><br>
 end_date: <%= @reservation.end_date.strftime('%d  %B %Y') %></p>
-<%= link_to "Check reservations", member_reservations_path(@guest) %>
+<%= link_to "Check reservations", member_reservations_url(@guest) %>
