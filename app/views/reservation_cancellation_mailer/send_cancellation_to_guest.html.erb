@@ -1,7 +1,10 @@
 <h1>Reservation Cancellation</h1>
-
 <p>
   <%= @greeting %>:
 </p>
 <p>location: <%= @location.title %><br>
-street: <%= @location.address.street %></p>
+<%= @address.street %>
+<%= @address.city %> <%= @address.postal_code %>, <%= @address.country %></p>
+<p>Reservation<br>
+start date: <%= @reservation.start_date.strftime('%d  %B %Y') %><br>
+end date: <%= @reservation.end_date.strftime('%d  %B %Y') %></p>

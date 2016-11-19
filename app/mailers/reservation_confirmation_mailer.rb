@@ -17,6 +17,7 @@ class ReservationConfirmationMailer < ApplicationMailer
     @host = @location.member
     @guest = reservation.member
     profile = @guest.profile
+    @address = @location.address
     @first_name = profile.first_name
     @last_name = profile.last_name
 

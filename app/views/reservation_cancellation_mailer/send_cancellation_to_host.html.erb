@@ -4,5 +4,9 @@
 <%= @greeting %>:
 </p>
 <p>location: <%= @location.title %><br>
-street: <%= @location.address.street %></p>
+street: <%= @address.street %><br>
+<%= @address.city %> <%= @address.postal_code %>, <%= @address.country %></p>
 <p>guest: <%= @first_name %> <%= @last_name %></p>
+<p>reservation:<br>
+start date: <%= @reservation.start_date.strftime('%d  %B %Y') %><br>
+end date: <%= @reservation.end_date.strftime('%d  %B %Y') %></p>

@@ -1,9 +1,11 @@
-<h1>ReservationConfirmationMailer#send_host_reservation_confirmation</h1>
+<h1>Reservation Confirmation</h1>
 
 <p>
   <%= @body %>
   <p><%= @first_name %> <%= @last_name %></p>
   <p>
   <%= @location.title %><br>
-  <%= @location.address.street %></p>
+  <%= @address.street %></p>
+  <%= @address.city %>, <%= @address.postal_code %>
+  <%= @address.country %>
 </p>
