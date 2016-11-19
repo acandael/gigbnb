@@ -1,8 +1,12 @@
 <h1>Reservation confirmation</h1>
-
 <p>
  <%= @body %>
- <p><%= @location.title %>:<br>
- street: <%= @location.address.street %></p>
- <p>Host: <%= @first_name %> <%= @last_name %></p>
 </p>
+<p><%= @location.title %>:<br>
+<%= @address.street %><br>
+<%= @address.city %> <%= @address.postal_code %>, <%= @address.country %></p>
+<p>Host: <%= @first_name %> <%= @last_name %></p>
+<p>Reservation<br>
+start_date: <%= @reservation.start_date.strftime('%d  %B %Y')%><br>
+end_date: <%= @reservation.end_date.strftime('%d  %B %Y') %></p>
+<%= link_to "Check reservations", member_reservations_path(@guest) %>

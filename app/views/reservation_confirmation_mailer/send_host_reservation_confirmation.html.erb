@@ -1,11 +1,12 @@
 <h1>Reservation Confirmation</h1>
 
-<p>
-  <%= @body %>
-  <p><%= @first_name %> <%= @last_name %></p>
-  <p>
-  <%= @location.title %><br>
-  <%= @address.street %></p>
-  <%= @address.city %>, <%= @address.postal_code %>
-  <%= @address.country %>
-</p>
+<p><%= @body %></p>
+<p><%= @first_name %> <%= @last_name %></p>
+<p><%= @location.title %><br>
+ <%= @address.street %></p>
+ <%= @address.city %>, <%= @address.postal_code %>
+ <%= @address.country %></p>
+<p>Reservation<br>
+start_date: <%= @reservation.start_date.strftime('%d  %B %Y')%><br>
+end_date: <%= @reservation.end_date.strftime('%d  %B %Y') %></p>
+ 
