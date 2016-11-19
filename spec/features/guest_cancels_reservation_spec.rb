@@ -36,7 +36,7 @@ feature "Guest cancels reservation" do
     fill_in "card_verification", with: "123"
     fill_in "address_zip", with: "10001"
     click_button "Book Now"
-    sleep 5
+    sleep 10
     expect(Reservation.count).to eq 1
   end
 end
