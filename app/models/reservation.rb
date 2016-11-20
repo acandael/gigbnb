@@ -6,6 +6,8 @@ class Reservation < ActiveRecord::Base
   scope :upcoming, ->(member_id){ where("start_date > ?", Date.today).where(member_id: member_id) if member_id.present? }
   scope :not_cancelled, ->{ where(id_for_refund: nil) }
 
+  scope :reservations_for_host, ->(host) { joins(:location).merge(Location.where(member_id: host.id)) if host.present? }
+
   def dates_are_available
     start_date_overlap = location.reservations.where(start_date:
     start_date..end_date - 1.day)

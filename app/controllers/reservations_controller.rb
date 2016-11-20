@@ -2,7 +2,12 @@ class ReservationsController < ApplicationController
 
   def index
     @member = current_member
-    @reservations = Reservation.not_cancelled.upcoming(@member.id)
+    profile = Profile.find(@member.id)
+    if profile.is_host?
+      @reservations = Reservation.reservations_for_host(@member)
+    else
+      @reservations = Reservation.not_cancelled.upcoming(@member.id)
+    end
   end
 
   def new
