@@ -8,6 +8,7 @@ feature "member views his reservations" do
   end
 
     scenario "views the reservation", js: true do
+      FactoryGirl.create(:profile, member_id: member.id, is_host: false)
         location = FactoryGirl.create(:location, member_id: member.id) 
     reservation = FactoryGirl.build(:reservation, member_id: member.id, location_id: location.id) 
         reservation.save(validate: false)

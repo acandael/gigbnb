@@ -22,6 +22,7 @@ feature "Guest views upcoming reservations" do
   end
 
   scenario "by visiting index of upcoming reservations" do
+    FactoryGirl.create(:profile, member_id: member.id, is_host: false)
     visit member_reservations_path(member)
     expect(page).to have_content @upcoming_reservation.start_date.strftime("%m/%d/%Y")
     expect(page).to_not have_content @past_reservation.start_date.strftime("%m/%d/%Y")

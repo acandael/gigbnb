@@ -17,6 +17,7 @@ feature "Guest cancels reservation" do
   end
 
   scenario "by visiting index of upcoming reservations and clicking cancel", js: true do
+    FactoryGirl.create(:profile, member_id: member.id, is_host: false)
     create_reservation
     visit member_reservations_path(member)
     page.accept_confirm do
