@@ -2,8 +2,7 @@ class ReservationsController < ApplicationController
 
   def index
     @member = current_member
-    profile = Profile.find(@member.id)
-    if profile.is_host?
+    if is_host(@member)
       @reservations = Reservation.reservations_for_host(@member)
     else
       @reservations = Reservation.not_cancelled.upcoming(@member.id)
@@ -99,5 +98,10 @@ class ReservationsController < ApplicationController
 
   def refund_customer(reservation)
     CreditCardService.new({ reservation: reservation }).refund_customer
+  end
+
+  def is_host(member)
+    profile = Profile.find(member.id)
+    profile.is_host?
   end
 end
