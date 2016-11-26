@@ -9,8 +9,10 @@ class SearchForLocationService
   end
 
  def matches
-  date_range_array = (@start_date.to_date..
-  (@end_date.to_date - 1.day)).to_a
+  unless @start_date.blank? | @end_date.blank?
+    date_range_array = (@start_date.to_date..
+    (@end_date.to_date - 1.day)).to_a
+  end
   unless @city.blank? && @region.blank?
     address = "#{@city}, #{@region}"
   end
