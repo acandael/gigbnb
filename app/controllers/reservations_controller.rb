@@ -9,6 +9,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def show
+    @member = current_member
+    @reservation = Reservation.find(params[:id])
+    @location = Location.find(@reservation.location_id)
+    host = Member.find(@location.member_id)
+    @host_profile = host.profile
+    @address = @location.address
+  end
+
   def new
     @reservation = Reservation.new(reservation_params)
     @location = @reservation.location

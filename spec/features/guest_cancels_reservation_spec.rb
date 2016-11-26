@@ -18,13 +18,15 @@ feature "Guest cancels reservation" do
 
   scenario "by visiting index of upcoming reservations and clicking cancel", js: true do
     FactoryGirl.create(:profile, member_id: member.id, is_host: false)
+    FactoryGirl.create(:profile, member_id: host.id, is_host: true)
     create_reservation
+    reservation = Reservation.last
     visit member_reservations_path(member)
+    click_link reservation.start_date.strftime("%m/%d/%Y")
     page.accept_confirm do
       click_link "Cancel Reservation"
     end
     expect(page).to have_content "Your reservation was successfully cancelled."
-    reservation = Reservation.last
     expect(reservation).to have_attributes(id_for_refund: a_string_starting_with("re"))
     expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
   end
