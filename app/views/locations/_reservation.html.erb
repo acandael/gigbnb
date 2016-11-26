@@ -1,0 +1,7 @@
+<%= simple_form_for [current_member, Reservation.new], url: new_member_reservation_path(current_member), html: { method: :get } do |f| %>
+<%= f.hidden_field :location_id, value: location.id %>
+<%= f.hidden_field :member_id, value: current_member.id %>
+<%= f.input :start_date, default: Date.tomorrow %>
+<%= f.input :end_date, default: Date.today + 2.days %>
+<%= f.submit 'Pay Now' %>
+<% end %>

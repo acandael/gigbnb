@@ -1,0 +1,8 @@
+<p><%= link_to "Add available dates for this location", calendar_location_path(location) %></p>
+<% if !location.published %>
+  <% if authorized_stripe?(current_member) %>
+    <p>Status: unpublished <%= link_to "Publish Location", publish_location_path(location) %></p>
+  <% end %>
+<% else %>
+  <p>Status: Published</p>
+<% end %>

@@ -1,25 +1,10 @@
 <section class="content">
+  <div class="location">
   <h1><%= @location.title %></h1>
-  <div class="reservation">
-    <%= simple_form_for [current_member, Reservation.new], url: new_member_reservation_path(current_member), html: { method: :get } do |f| %>
-    <%= f.hidden_field :location_id, value: @location.id %>
-    <%= f.hidden_field :member_id, value: current_member.id %>
-    <%= f.input :start_date, default: Date.tomorrow %>
-    <%= f.input :end_date, default: Date.today + 2.days %>
-    <%= f.submit 'Pay Now' %>
+  <% @location.location_images.each do |image| %>
+    <%= image_tag image.picture.url(:small) %>
   <% end %>
-  <% if is_host? %>
-    <p><%= link_to "Add available dates for this location", calendar_location_path(@location) %></p>
-    <% if !@location.published %>
-      <% if authorized_stripe?(current_member) %>
-        <p>Status: unpublished <%= link_to "Publish Location", publish_location_path(@location) %></p>
-      <% end %>
-    <% else %>
-      <p>Status: Published</p>
-    <% end %>
-    <div id="calendar", style='width: 400px;'></div>
-  </div>
-  <% end %>
+  <p><%= link_to "Add Images", add_images_location_path(@location) %></p>
   <%= simple_format(@location.description) %>
   <% if @location.address.present? %>
     <%= render 'address', address: @location.address %>
@@ -27,19 +12,22 @@
   <p><%= pluralize(@location.beds, 'bed') %><br>
   <%= pluralize(@location.guests, 'guest') %></p>
   <p><%= number_to_currency(@location.price) %></p>
-  <p>
-  <% if is_host? %>
-    <%= link_to "Edit", edit_member_location_path(current_member, @location) %>
-    <%= link_to "Delete", member_location_path(current_member, @location), method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
-  </p>
-  <% @location.location_images.each do |image| %>
-    <%= image_tag image.picture.url(:small) %>
-  <% end %>
-  <p><%= link_to "Add Images", add_images_location_path(@location) %></p>
-  <div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+  <div style='width: 400px;'>
+    <div id="map" style='width: 400px; height: 400px;'></div>
   </div>
+  </div><!-- .location -->
+
+  <div class="reservation">
+    <%= render 'reservation', location: @location %>
+    <% if is_host? %>
+      <%= render 'available_dates', location: @location %>
+    <% end %>
+    <% if is_host? %>
+      <%= link_to "Edit", edit_member_location_path(current_member, @location) %>
+      <%= link_to "Delete", member_location_path(current_member, @location), method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+    <div id="calendar"></div>
+  </div><!-- .reservation -->
 </section>
 
 <script type="text/javascript">

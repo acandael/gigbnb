@@ -24,13 +24,21 @@ section.content {
   }
 
   form.available_date {
-    @include span-columns(6);
     margin-bottom: 2em;
   }
 
+  div.location {
+    @include span-columns(7);
+    float: left;
+  }
+
   div.reservation {
-    @include span-columns(4);
+    @include span-columns(5);
     float: right;
   }
 
+  div#calendar {
+    margin-top: 2.25em;
+    width: 400px;
+  }
 }
