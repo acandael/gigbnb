@@ -1,6 +1,11 @@
 <section class="content">
   <p><%= link_to "Reservations", member_reservations_path(@member) %></p>
   <h1>Reservation: <%= @location.title %></h1>
+  <% if @location.location_images.any? %>
+    <% @location.location_images.each do |image| %>
+      <%= image_tag image.picture.url(:small) %>
+    <% end %>
+  <% end %>
   <p>Start date: <%= @reservation.start_date.strftime("%m/%d/%Y") %><br>
   End date: <%= @reservation.end_date.strftime("%m/%d/%Y") %></p>
   <p>Host: <%= @host_profile.first_name %> <%= @host_profile.last_name %></p>
