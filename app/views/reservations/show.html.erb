@@ -1,5 +1,6 @@
 <section class="content">
-  <h1>Reservation <%= @location.title %></h1>
+  <p><%= link_to "Reservations", member_reservations_path(@member) %></p>
+  <h1>Reservation: <%= @location.title %></h1>
   <p>Start date: <%= @reservation.start_date.strftime("%m/%d/%Y") %><br>
   End date: <%= @reservation.end_date.strftime("%m/%d/%Y") %></p>
   <p>Host: <%= @host_profile.first_name %> <%= @host_profile.last_name %></p>
