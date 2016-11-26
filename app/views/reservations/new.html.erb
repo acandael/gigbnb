@@ -3,7 +3,8 @@
  <noscript>JavaScript is not enabled and is required for this
 form. First enable it in your web browser settings.</noscript>
 </div>
-
+<section class="content">
+  <h1>Book <%= @location.title %></h1>
 <%= simple_form_for [current_member, @reservation], html: { id: "credit_card_form" } do |f| %>
   <%= f.text_field :start_date, value: @reservation.start_date %>
   <%= f.text_field :end_date, value: @reservation.end_date %>
@@ -20,3 +21,4 @@ form. First enable it in your web browser settings.</noscript>
   class="wait-text">Please wait ...</h3></div>
   <%= f.button :submit, "Book Now" %>
 <% end %>
+</section>
