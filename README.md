@@ -4,3 +4,10 @@ Apps](http://rubythursday.com/pilot-course-signup)
 * Ruby version: 2.3.1
 * Rails version: 4.2.6
 * Database: Postgresql 9.5.1
+
+## Features
+* Search locations
+* Upload multiple images
+* Payments with Stripe
+* Mailer jobs with Delayed_job
+* ...
