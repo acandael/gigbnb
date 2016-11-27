@@ -5,7 +5,7 @@ feature "Guest cancels reservation" do
   let(:location) { FactoryGirl.create(:location_with_available_dates, member_id: host.id) }
 
   let(:member) { FactoryGirl.create(:member) }
-  let(:profile) { FactoryGirl.create(:profile, member_id: member.id) }
+  # let(:profile) { FactoryGirl.create(:profile, member_id: member.id) }
 
   before do
     login_as(member, scope: :member)
@@ -27,8 +27,10 @@ feature "Guest cancels reservation" do
       click_link "Cancel Reservation"
     end
     expect(page).to have_content "Your reservation was successfully cancelled."
+    reservation.reload
     expect(reservation).to have_attributes(id_for_refund: a_string_starting_with("re"))
-    expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
+    #first job is reminder email
+    expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
   end
 
   def create_reservation
