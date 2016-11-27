@@ -7,6 +7,7 @@ Apps](http://rubythursday.com/pilot-course-signup)
 
 ## Features
 * Search locations
+* Geolocation
 * Upload multiple images
 * Payments with Stripe
 * Mailer jobs with Delayed_job
